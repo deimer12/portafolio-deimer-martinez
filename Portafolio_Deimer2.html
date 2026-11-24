@@ -1,0 +1,2165 @@
+﻿<!DOCTYPE html>
+<html lang="es" class="scroll-smooth" style="scroll-snap-type: y proximity; scroll-padding-top: 5rem;">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deimer Martínez | Ingeniería en Informática & Arquitectura de Sistemas</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Space Grotesk (Display nítida), Inter (Cuerpo legible), JetBrains Mono (Código), Dancing Script (Cursiva) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- Devicon: logos de lenguajes y tecnologías -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bgAbyss: '#040812',
+            bgDeep: '#070d1d',
+            bgCard: '#0b1328',
+            bgCardHover: '#101c3a',
+            borderTech: '#1a2b52',
+            cyanElectric: '#00e5ff',
+            cobaltGlow: '#2563eb',
+            skyTech: '#38bdf8',
+            magentaPulse: '#d946ef',
+            violetGlow: '#7c3aed',
+          },
+          fontFamily: {
+            display: ['Space Grotesk', 'sans-serif'],
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+            cursive: ['"Dancing Script"', 'cursive'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --bg-abyss: #040812;
+      --bg-deep: #070d1d;
+      --cyan-electric: #00e5ff;
+      --cobalt-glow: #2563eb;
+      --magenta-pulse: #d946ef;
+    }
+
+    body {
+      background-color: var(--bg-abyss);
+      color: #f8fafc;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .page-section {
+      scroll-snap-align: start;
+      scroll-snap-stop: normal;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+    @keyframes scrollHint {
+      0%, 100% { transform: translateY(0); opacity: 0.7; }
+      50% { transform: translateY(8px); opacity: 1; }
+    }
+    .scroll-hint {
+      animation: scrollHint 1.8s ease-in-out infinite;
+    }
+
+    /* Iluminación ambiental estilo setup nocturno de ingeniería (azul cian + destellos violeta/magenta) */
+    .ambient-lighting {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 10% 15%, rgba(0, 229, 255, 0.16) 0%, transparent 40%),
+        radial-gradient(circle at 88% 18%, rgba(37, 99, 235, 0.22) 0%, transparent 44%),
+        radial-gradient(circle at 84% 82%, rgba(217, 70, 239, 0.14) 0%, transparent 42%),
+        radial-gradient(circle at 16% 84%, rgba(124, 58, 237, 0.15) 0%, transparent 46%),
+        radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.06) 0%, transparent 55%),
+        linear-gradient(180deg, #030712 0%, #060d1d 45%, #040812 75%, #02050b 100%);
+      animation: ambient-drift 20s ease-in-out infinite alternate;
+    }
+
+    @keyframes ambient-drift {
+      0% { filter: saturate(100%) brightness(1); }
+      100% { filter: saturate(115%) brightness(1.06); }
+    }
+
+    /* Retícula técnica azul sutil */
+    .tech-grid-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background-size: 44px 44px;
+      background-image:
+        linear-gradient(to right, rgba(0, 229, 255, 0.045) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(37, 99, 235, 0.05) 1px, transparent 1px);
+    }
+
+    /* Canvas inmersivo de código y diagramas de flujo */
+    #dev-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      opacity: 0.72;
+    }
+
+    /* Contenedor de contenido sobre el fondo inmersivo */
+    .content-layer {
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Efecto de tarjetas cristal azulado profundo (Glassmorphism técnico) */
+    .tech-panel {
+      background: linear-gradient(145deg, rgba(11, 19, 40, 0.86) 0%, rgba(7, 13, 29, 0.92) 100%);
+      border: 1px solid rgba(56, 189, 248, 0.18);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 20px 50px -15px rgba(2, 6, 23, 0.85), inset 0 1px 0 0 rgba(0, 229, 255, 0.12);
+    }
+
+    .tech-panel:hover {
+      border-color: rgba(0, 229, 255, 0.48);
+      box-shadow: 0 24px 60px -12px rgba(0, 229, 255, 0.14), inset 0 1px 0 0 rgba(0, 229, 255, 0.25);
+    }
+
+    /* ============================================================
+       SISTEMA DE CONSTRUCCIÓN PROGRESIVA AL HACER SCROLL (SCROLL BUILDER)
+       ============================================================ */
+    .build-block {
+      position: relative;
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.65s ease, box-shadow 0.6s ease, outline-color 0.4s ease;
+      will-change: transform, opacity, filter;
+    }
+
+    .build-block .block-content {
+      transition: opacity 0.65s ease, filter 0.65s ease, transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Estado 0: Sumergido / Esperando que el usuario descienda */
+    .build-block.state-hidden {
+      transform: translateY(56px) scale(0.965);
+    }
+    .build-block.state-hidden .block-content {
+      opacity: 0;
+      filter: blur(10px);
+      transform: translateY(18px) scale(0.985);
+    }
+
+    /* Estado 1: Wireframe cian/azul seleccionado por agentes al bajar (construcción visible) */
+    .build-block.state-wireframe {
+      transform: translateY(0) scale(1);
+      outline: 2px solid rgba(0, 229, 255, 0.95);
+      background-color: rgba(0, 229, 255, 0.055);
+      border-radius: 1rem;
+      box-shadow: 0 0 0 1px rgba(0, 229, 255, 0.25), 0 0 45px rgba(0, 229, 255, 0.28), inset 0 0 30px rgba(0, 229, 255, 0.06);
+    }
+
+    .build-block.state-wireframe .block-content {
+      opacity: 0.28;
+      filter: saturate(150%) brightness(1.12) blur(0.5px);
+    }
+
+    /* Superposición Wireframe con esquinas y etiqueta de compilación */
+    .wire-overlay {
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+      z-index: 30;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .build-block.state-wireframe .wire-overlay {
+      opacity: 1;
+    }
+
+    .wire-handle {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: #040812;
+      border: 2px solid #00e5ff;
+      box-shadow: 0 0 8px #00e5ff;
+    }
+    .wire-handle.tl { top: -4px; left: -4px; }
+    .wire-handle.tr { top: -4px; right: -4px; }
+    .wire-handle.bl { bottom: -4px; left: -4px; }
+    .wire-handle.br { bottom: -4px; right: -4px; }
+
+    .wire-tag {
+      position: absolute;
+      top: -22px;
+      left: 0;
+      background: linear-gradient(90deg, #00e5ff, #2563eb);
+      color: #040812;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 4px 4px 0 0;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      box-shadow: 0 4px 14px rgba(0, 229, 255, 0.45);
+    }
+
+    /* Estado 2: Ensamblado y compilado con nitidez */
+    .build-block.state-built {
+      transform: translateY(0) scale(1);
+      box-shadow: 0 0 0 1px rgba(0, 229, 255, 0.06), 0 18px 45px -20px rgba(0, 229, 255, 0.18);
+    }
+    .build-block.state-built .block-content {
+      opacity: 1;
+      filter: none;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Cursores de Agentes Multiplayer */
+    .agent-cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9999;
+      pointer-events: none;
+      will-change: transform, opacity;
+      transition: opacity 0.35s ease;
+    }
+
+    .agent-badge {
+      margin-left: 14px;
+      margin-top: -4px;
+      padding: 2px 7px;
+      border-radius: 5px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.65);
+    }
+
+    /* Pulso del núcleo inicial */
+    @keyframes pulseCoreCyan {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 229, 255, 0.7); }
+      50% { transform: scale(1.1); box-shadow: 0 0 36px 12px rgba(0, 229, 255, 0.25); }
+    }
+    .core-node {
+      animation: pulseCoreCyan 1.5s infinite ease-in-out;
+    }
+
+    /* Texto degradado de Ingeniería Informática */
+    .text-gradient-tech {
+      background: linear-gradient(135deg, #ffffff 15%, #00e5ff 60%, #3b82f6 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Scrollbar estilizada */
+    ::-webkit-scrollbar {
+      width: 9px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #040812;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1a2b52;
+      border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00e5ff;
+    }
+
+    /* Marquee infinito de tecnologías (comportamiento tipo showcase) */
+    .tech-marquee {
+      overflow: hidden;
+      position: relative;
+      mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    }
+    .tech-marquee-track {
+      display: flex;
+      width: max-content;
+      gap: 1rem;
+      animation: marquee-scroll 38s linear infinite;
+    }
+    .tech-marquee:hover .tech-marquee-track {
+      animation-play-state: paused;
+    }
+    @keyframes marquee-scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .lang-card {
+      background: linear-gradient(145deg, rgba(11, 19, 40, 0.9) 0%, rgba(7, 13, 29, 0.95) 100%);
+      border: 1px solid rgba(56, 189, 248, 0.16);
+      transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+    }
+    .lang-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0, 229, 255, 0.55);
+      box-shadow: 0 18px 40px -12px rgba(0, 229, 255, 0.18);
+    }
+    .badge-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    .ai-glow {
+      box-shadow: 0 0 0 1px rgba(217, 70, 239, 0.25), 0 20px 50px -15px rgba(124, 58, 237, 0.35), inset 0 1px 0 0 rgba(217, 70, 239, 0.18);
+    }
+
+    .hero-photo-wrap {
+      -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 14%, #000 100%), linear-gradient(to left, transparent 0%, #000 12%, #000 100%), linear-gradient(to right, transparent 0%, #000 10%, #000 100%);
+      -webkit-mask-composite: source-in;
+      mask-image: linear-gradient(to top, transparent 0%, #000 14%, #000 100%), linear-gradient(to left, transparent 0%, #000 12%, #000 100%), linear-gradient(to right, transparent 0%, #000 10%, #000 100%);
+      mask-composite: intersect;
+    }
+    .hero-photo-img {
+      filter: saturate(1.05) contrast(1.12) brightness(0.82);
+    }
+    .hero-name-glow {
+      text-shadow: 0 0 28px rgba(0, 229, 255, 0.3), 0 0 60px rgba(59, 130, 246, 0.2);
+    }
+    .hero-portfolio-highlight {
+      filter: drop-shadow(0 0 26px rgba(0, 229, 255, 0.28)) drop-shadow(0 10px 34px rgba(59, 130, 246, 0.22));
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-cyanElectric selection:text-bgAbyss">
+
+  <!-- CAPAS DE FONDO INMERSIVO (SETUP DE INGENIERÍA NOCTURNO) -->
+  <div class="ambient-lighting" aria-hidden="true"></div>
+  <div class="tech-grid-overlay" aria-hidden="true"></div>
+  <canvas id="dev-canvas" aria-hidden="true"></canvas>
+
+  <!-- CAPA DE CURSORES DE AGENTES MULTIPLAYER -->
+  <div id="agents-layer" aria-hidden="true"></div>
+
+  <!-- PANTALLA DE CARGA INICIAL -->
+  <div id="origin-core" class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-bgAbyss transition-opacity duration-700">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,229,255,0.12),transparent_45%),radial-gradient(circle_at_80%_20%,rgba(37,99,235,0.18),transparent_35%)]"></div>
+    <div class="relative flex flex-col items-center gap-5 px-6 text-center">
+      <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyanElectric/20 to-cobaltGlow/20 border border-cyanElectric/40 flex items-center justify-center shadow-[0_0_30px_rgba(0,229,255,0.25)]">
+        <i class="fa-solid fa-code text-cyanElectric text-2xl animate-pulse"></i>
+      </div>
+      <div>
+        <p class="font-display text-2xl sm:text-3xl font-bold uppercase tracking-wider text-white">Cargando Portafolio</p>
+        <p class="font-mono text-xs sm:text-sm text-cyanElectric/90 tracking-widest mt-2">INICIALIZANDO ENTORNO // DEIMER.SYS</p>
+      </div>
+      <div class="w-56 sm:w-72 h-1.5 rounded-full bg-borderTech/60 overflow-hidden">
+        <div class="h-full w-1/2 rounded-full bg-gradient-to-r from-cyanElectric via-skyTech to-cobaltGlow animate-pulse"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       HUD LATERAL DE INMERSIÓN / PROFUNDIDAD (EXPLORACIÓN SUMERGIBLE)
+       ========================================================= -->
+  <aside aria-label="Indicador de profundidad del sistema" class="hidden xl:flex fixed right-6 top-1/2 -translate-y-1/2 z-40 flex-col items-end gap-3">
+    <div class="px-3 py-1.5 rounded-lg bg-bgCard/90 border border-borderTech backdrop-blur-md font-mono text-[11px] text-cyanElectric shadow-lg">
+      PROFUNDIDAD: <span id="depth-percent" class="font-bold text-white">0%</span>
+    </div>
+
+    <div class="p-3 rounded-2xl bg-bgCard/85 border border-borderTech backdrop-blur-md flex flex-col gap-3 shadow-2xl">
+      <a href="#inicio" data-depth-link="inicio" class="depth-item group flex items-center justify-end gap-2.5 text-right">
+        <span class="font-mono text-[11px] font-semibold text-cyanElectric transition-colors">01_NÚCLEO</span>
+        <span class="depth-dot w-2.5 h-2.5 rounded-full bg-cyanElectric shadow-[0_0_10px_#00e5ff] transition-all"></span>
+      </a>
+      <a href="#proyectos" data-depth-link="proyectos" class="depth-item group flex items-center justify-end gap-2.5 text-right">
+        <span class="font-mono text-[11px] font-medium text-slate-400 group-hover:text-white transition-colors">02_SISTEMAS</span>
+        <span class="depth-dot w-2.5 h-2.5 rounded-full bg-slate-600 group-hover:bg-cyanElectric transition-all"></span>
+      </a>
+      <a href="#agentes-ia" data-depth-link="agentes-ia" class="depth-item group flex items-center justify-end gap-2.5 text-right">
+        <span class="font-mono text-[11px] font-medium text-slate-400 group-hover:text-white transition-colors">03_AGENTES_IA</span>
+        <span class="depth-dot w-2.5 h-2.5 rounded-full bg-slate-600 group-hover:bg-cyanElectric transition-all"></span>
+      </a>
+      <a href="#lenguajes" data-depth-link="lenguajes" class="depth-item group flex items-center justify-end gap-2.5 text-right">
+        <span class="font-mono text-[11px] font-medium text-slate-400 group-hover:text-white transition-colors">04_LENGUAJES</span>
+        <span class="depth-dot w-2.5 h-2.5 rounded-full bg-slate-600 group-hover:bg-cyanElectric transition-all"></span>
+      </a>
+      <a href="#formacion" data-depth-link="formacion" class="depth-item group flex items-center justify-end gap-2.5 text-right">
+        <span class="font-mono text-[11px] font-medium text-slate-400 group-hover:text-white transition-colors">05_FORMACIÓN</span>
+        <span class="depth-dot w-2.5 h-2.5 rounded-full bg-slate-600 group-hover:bg-cyanElectric transition-all"></span>
+      </a>
+      <a href="#trayectoria" data-depth-link="trayectoria" class="depth-item group flex items-center justify-end gap-2.5 text-right">
+        <span class="font-mono text-[11px] font-medium text-slate-400 group-hover:text-white transition-colors">06_TRAYECTORIA</span>
+        <span class="depth-dot w-2.5 h-2.5 rounded-full bg-slate-600 group-hover:bg-cyanElectric transition-all"></span>
+      </a>
+      <a href="#contacto" data-depth-link="contacto" class="depth-item group flex items-center justify-end gap-2.5 text-right">
+        <span class="font-mono text-[11px] font-medium text-slate-400 group-hover:text-white transition-colors">07_CONEXIÓN</span>
+        <span class="depth-dot w-2.5 h-2.5 rounded-full bg-slate-600 group-hover:bg-cyanElectric transition-all"></span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- NAVBAR SUPERIOR FIJA -->
+  <header class="fixed top-0 inset-x-0 z-40 bg-bgAbyss/85 backdrop-blur-xl border-b border-borderTech/80">
+    <!-- Barra de progreso de inmersión superior -->
+    <div class="h-[2px] w-full bg-bgDeep">
+      <div id="top-scroll-bar" class="h-full w-0 bg-gradient-to-r from-cyanElectric via-cobaltGlow to-magentaPulse transition-all duration-150"></div>
+    </div>
+
+    <div class="w-full px-4 sm:px-6 lg:px-8 h-18 py-3 flex items-center justify-between">
+      <!-- Identidad DM -->
+      <a href="#inicio" class="flex items-center gap-3.5 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyanElectric to-cobaltGlow flex items-center justify-center font-display font-bold text-lg tracking-wider text-bgAbyss shadow-lg shadow-cyanElectric/25 group-hover:scale-105 transition-transform">
+          DM
+        </div>
+        <div class="leading-tight">
+          <span class="font-display font-bold tracking-tight text-base sm:text-lg uppercase text-white block">
+            DEIMER MARTÍNEZ
+          </span>
+          <span class="font-mono text-[11px] text-cyanElectric uppercase tracking-widest block">
+            Ing. Informática • Sistemas &amp; Logística
+          </span>
+        </div>
+      </a>
+
+      <!-- Enlaces de navegación -->
+      <nav class="hidden lg:flex items-center gap-5 xl:gap-7 text-sm font-semibold text-slate-300">
+        <a href="#proyectos" class="hover:text-cyanElectric transition-colors">Proyectos</a>
+        <a href="#agentes-ia" class="hover:text-cyanElectric transition-colors">Agentes IA</a>
+        <a href="#lenguajes" class="hover:text-cyanElectric transition-colors">Lenguajes</a>
+        <a href="#formacion" class="hover:text-cyanElectric transition-colors">Formación</a>
+        <a href="#trayectoria" class="hover:text-cyanElectric transition-colors">Trayectoria</a>
+        <a href="#contacto" class="hover:text-cyanElectric transition-colors">Contacto</a>
+      </nav>
+
+      <!-- Controles -->
+      <div class="flex items-center gap-3">
+        <button onclick="resetAndRebuildAll()" title="Reiniciar y volver a construir cada sección al explorar"
+          class="px-3.5 py-2 rounded-xl border border-cyanElectric/45 bg-cyanElectric/10 hover:bg-cyanElectric/20 text-cyanElectric font-mono text-xs font-semibold flex items-center gap-2 transition-all cursor-pointer">
+          <i class="fa-solid fa-rotate-right"></i>
+          <span class="hidden sm:inline">Recompilar UI</span>
+        </button>
+
+        <a href="#contacto"
+          class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-cobaltGlow/25 border border-cobaltGlow/60 hover:border-cyanElectric text-xs font-mono font-semibold text-white transition-all">
+          <span class="w-2 h-2 rounded-full bg-cyanElectric animate-ping"></span>
+          <span>Disponible</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL SUMERGIBLE -->
+  <main class="content-layer pt-24 pb-32">
+
+    <!-- =========================================================
+         NIVEL 01: NÚCLEO / HERO MONUMENTAL
+         ========================================================= -->
+    <section id="inicio" data-depth-section="inicio" class="page-section relative w-full px-4 sm:px-6 lg:px-10 xl:px-14 pt-24 pb-20 lg:pt-28 lg:pb-16 overflow-hidden">
+      
+      <!-- Título Monumental de Fondo con Parallax suave -->
+      <div class="build-block pointer-events-none select-none overflow-hidden absolute inset-x-0 top-[14%] sm:top-[15%] lg:top-[17%] z-[1]" data-build-tag="CORE_BANNER // PORTAFOLIO_ING_INFORMATICA">
+        <div class="wire-overlay"><span class="wire-tag">CORE_BANNER // PORTAFOLIO_ING_INFORMATICA</span><div class="wire-handle tl"></div><div class="wire-handle tr"></div><div class="wire-handle bl"></div><div class="wire-handle br"></div></div>
+        <div class="block-content px-2 sm:px-4">
+          <h2 id="parallax-hero-word" class="hero-portfolio-highlight font-display font-extrabold text-[30vw] sm:text-[24vw] lg:text-[19vw] xl:text-[280px] leading-[0.8] tracking-tighter uppercase text-transparent bg-clip-text bg-gradient-to-b from-cyanElectric/85 via-skyTech/45 to-cobaltGlow/15 text-center">
+            PORTAFOLIO
+          </h2>
+        </div>
+      </div>
+
+      <!-- Hero principal (imagen al centro, contenido a los lados) -->
+      <div class="relative z-10 w-full flex-1 flex items-center pt-16 sm:pt-20 lg:pt-14">
+        <div class="build-block w-full" data-build-tag="HERO // INTRO">
+          <div class="wire-overlay"><span class="wire-tag">HERO // INTRO</span><div class="wire-handle tl"></div><div class="wire-handle tr"></div><div class="wire-handle bl"></div><div class="wire-handle br"></div></div>
+          <div class="block-content w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-[1fr_minmax(380px,1.15fr)_1fr] items-center gap-10 lg:gap-6 xl:gap-10 w-full">
+              <!-- Lado izquierdo: nombre, especialidad y acciones -->
+              <div class="order-2 lg:order-1 text-center lg:text-left relative z-30 self-center lg:-mr-16 xl:-mr-24 2xl:-mr-32 lg:pr-0">
+                <p class="font-cursive text-5xl sm:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-bold text-skyTech mb-1 hero-name-glow leading-none">Hola, soy</p>
+                <div class="relative mb-5">
+                  <h1 class="relative z-10 font-display font-extrabold uppercase tracking-tight text-white leading-[0.86] hero-name-glow">
+                    <span class="block text-8xl sm:text-9xl lg:text-8xl xl:text-9xl 4xl:text-[8rem]">DEIMER</span>
+                    <span class="block text-8xl sm:text-9xl lg:text-8xl xl:text-9xl 4xl:text-[8rem] text-gradient-tech">MARTÍNEZ</span>
+                  </h1>
+                </div>
+                <p class="font-display text-xl sm:text-2xl lg:text-xl xl:text-2xl 2xl:text-3xl uppercase tracking-wide text-cyanElectric font-bold mb-8 max-w-xl mx-auto lg:mx-0 leading-snug">
+                  Ingeniería en Informática · Sistemas, Logística &amp; Automatización
+                </p>
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4">
+                  <a href="#proyectos" class="px-8 sm:px-10 py-4 rounded-xl bg-gradient-to-r from-cyanElectric to-cobaltGlow hover:brightness-110 text-bgAbyss font-display font-bold text-lg sm:text-xl xl:text-2xl flex items-center gap-3 shadow-lg shadow-cyanElectric/25 transition-all">
+                    <span>Ver proyectos</span>
+                    <i class="fa-solid fa-arrow-right text-sm"></i>
+                  </a>
+                  <a href="#contacto" class="px-8 py-4 rounded-xl bg-bgDeep/80 hover:bg-bgCardHover border border-borderTech hover:border-cyanElectric/60 text-white font-display font-semibold text-lg sm:text-xl xl:text-2xl transition-all">
+                    Contactar
+                  </a>
+                </div>
+              </div>
+
+              <!-- Centro: imagen -->
+              <div class="order-1 lg:order-2 flex justify-center items-end relative z-20 self-end">
+                <div id="hero-photo-wrap" class="hero-photo-wrap relative select-none w-full max-w-[420px] sm:max-w-[520px] lg:max-w-[580px] xl:max-w-[660px] 2xl:max-w-[720px] h-[64vh] sm:h-[74vh] lg:h-[88vh] xl:h-[94vh] 2xl:h-[98vh] pointer-events-auto cursor-default">
+                  <div class="relative h-full w-full overflow-visible flex items-end justify-center">
+                    <img src="Img/Foto_Deimer_clean.png" alt="Foto de Deimer M. Martínez V." class="hero-photo-img h-full w-auto max-w-full object-contain object-[center_16%] opacity-[1] scale-[1.08]" />
+                    <!-- Luces de estudio (azul/cyan y magenta, tono más oscuro) -->
+                    <div class="absolute inset-y-0 right-[10%] w-[45%] bg-gradient-to-l from-cyanElectric/12 via-skyTech/5 to-transparent mix-blend-screen"></div>
+                    <div class="absolute inset-y-0 left-[10%] w-[34%] bg-gradient-to-r from-fuchsia-500/8 via-violetGlow/4 to-transparent mix-blend-screen"></div>
+                    <div class="absolute top-[12%] right-[18%] w-[30%] h-[34%] rounded-full bg-cyanElectric/8 blur-3xl mix-blend-screen"></div>
+                    <div class="absolute top-[24%] left-[18%] w-[24%] h-[30%] rounded-full bg-fuchsia-500/6 blur-3xl mix-blend-screen"></div>
+                    <div class="absolute inset-0 bg-gradient-to-tr from-fuchsia-500/4 via-transparent to-cyanElectric/6 mix-blend-soft-light"></div>
+                    <!-- Luz interactiva que sigue al cursor -->
+                    <div id="hero-photo-light" class="absolute inset-0 opacity-60 transition-opacity duration-300" style="background: radial-gradient(circle at 70% 30%, rgba(0,229,255,0.12), rgba(217,70,239,0.06) 24%, transparent 52%); mix-blend-mode: screen;"></div>
+                    <!-- Profundidad y desvanecido integrado al fondo (sin contorno) -->
+                    <div class="absolute inset-x-0 bottom-0 h-[38%] bg-gradient-to-t from-bgAbyss via-bgAbyss/45 to-transparent"></div>
+                    <div class="absolute inset-y-0 left-0 w-[28%] bg-gradient-to-r from-bgAbyss/60 to-transparent"></div>
+                    <div class="absolute inset-y-0 right-0 w-[28%] bg-gradient-to-l from-bgAbyss/60 to-transparent"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Lado derecho: perfil -->
+              <div class="order-3 lg:order-3 text-center lg:text-left relative z-30 self-center lg:pl-4 xl:pl-8">
+                <div class="max-w-xl mx-auto lg:mx-0">
+                  <span class="inline-block font-mono text-sm sm:text-base uppercase tracking-[0.2em] text-cyanElectric/90 font-semibold mb-5">// Perfil profesional</span>
+                  <p class="text-slate-200/95 text-2xl sm:text-3xl lg:text-2xl xl:text-3xl 2xl:text-[2.15rem] leading-[1.45] mb-8 font-medium">
+                    Perfil técnico con <strong class="text-white font-semibold">liderazgo</strong> y visión clara: crear soluciones confiables que optimicen procesos, integren tecnología y generen impacto real.
+                  </p>
+                  <div class="flex flex-col sm:flex-row lg:flex-col xl:flex-row items-center lg:items-start xl:items-center justify-center lg:justify-start gap-3 sm:gap-5 lg:gap-3 xl:gap-6 text-base sm:text-lg xl:text-xl font-mono text-slate-300/90">
+                    <span class="inline-flex items-center"><i class="fa-solid fa-location-dot text-cyanElectric mr-2"></i>Caracas, Venezuela</span>
+                    <span class="text-skyTech inline-flex items-center"><span class="w-2 h-2 rounded-full bg-cyanElectric mr-2 animate-pulse"></span>Disponible para proyectos y oportunidades</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Indicador de paginación/scroll -->
+      <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-slate-300/80 pointer-events-none select-none">
+        <span class="font-mono text-[10px] sm:text-xs uppercase tracking-[0.2em]">Desliza para continuar</span>
+        <i class="fa-solid fa-chevron-down text-cyanElectric/80 scroll-hint"></i>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         NIVEL 02: SISTEMAS & PROYECTOS DESARROLLADOS
+         ========================================================= -->
+    <section id="proyectos" data-depth-section="proyectos" class="page-section w-full px-4 sm:px-6 lg:px-8 pt-24 pb-16 border-t border-borderTech/70 justify-start">
+      
+      <!-- Encabezado Monumental + Filtros -->
+      <div class="build-block mb-12" data-build-tag="SECTION_02 // SISTEMAS_PRODUCCION">
+        <div class="wire-overlay"><span class="wire-tag">SECTION_02 // SISTEMAS_PRODUCCION</span><div class="wire-handle tl"></div><div class="wire-handle tr"></div><div class="wire-handle bl"></div><div class="wire-handle br"></div></div>
+        <div class="block-content flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+          <div>
+            <span class="font-mono text-xs sm:text-sm uppercase tracking-widest text-cyanElectric font-semibold block mb-2">
+              // 02_ARQUITECTURA_DE_SOFTWARE
+            </span>
+            <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-white leading-none">
+              SISTEMAS QUE <span class="text-gradient-tech">OPERAN SOLOS.</span>
+            </h2>
+          </div>
+
+          <!-- Filtros interactivos por Stack -->
+          <div class="flex flex-wrap gap-2.5" id="project-filters">
+            <button data-filter="all" class="filter-btn active px-4 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-bold uppercase tracking-wider bg-cyanElectric text-bgAbyss shadow-lg shadow-cyanElectric/25 transition-all cursor-pointer">
+              Todos (5)
+            </button>
+            <button data-filter="web" class="filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-semibold uppercase tracking-wider bg-bgCard border border-borderTech text-slate-300 hover:text-white hover:border-cyanElectric/50 transition-all cursor-pointer">
+              PHP + SQL (2)
+            </button>
+            <button data-filter="appscript" class="filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-semibold uppercase tracking-wider bg-bgCard border border-borderTech text-slate-300 hover:text-white hover:border-cyanElectric/50 transition-all cursor-pointer">
+              Google Apps Script (3)
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grid de Proyectos (Tarjetas grandes y nítidas) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7" id="projects-grid">
+        
+        <!-- PROYECTO 01: SICFI -->
+        <article class="project-card build-block tech-panel rounded-3xl overflow-hidden flex flex-col justify-between transition-all" data-category="web" data-build-tag="BUILD_APP // SICFI_POS.PHP">
+          <div class="wire-overlay"><span class="wire-tag">BUILD_APP // SICFI_POS.PHP</span><div class="wire-handle tl"></div><div class="wire-handle tr"></div><div class="wire-handle bl"></div><div class="wire-handle br"></div></div>
+          <div class="block-content flex flex-col h-full">
+            <!-- Cabecera Visual del Sistema -->
+            <div class="p-5 bg-bgAbyss/90 border-b border-borderTech">
+              <div class="rounded-2xl bg-[#071329] border border-cyanElectric/30 p-4">
+                <div class="flex items-center justify-between mb-3.5">
+                  <div class="flex items-center gap-3">
+                    <!-- Emblema vectorial SICFI (Reemplazable por logo sistema sicfi.png) -->
+                    <div class="w-10 h-10 rounded-xl bg-cyanElectric/15 border border-cyanElectric/50 flex items-center justify-center text-cyanElectric">
+                      <svg viewBox="0 0 32 32" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.2">
+                        <polygon points="16,3 28,10 28,22 16,29 4,22 4,10" />
+                        <polyline points="10,19 15,14 19,17 24,11" />
+                      </svg>
+                    </div>
+                    <div>
+                      <div class="font-display font-bold text-lg tracking-wide text-white leading-none">SICFI</div>
+                      <div class="text-[11px] font-mono text-cyanElectric mt-0.5">Facturación e Inventario</div>
+                    </div>
+                  </div>
+                  <span class="px-2.5 py-1 rounded-md bg-cobaltGlow/30 border border-cobaltGlow/60 text-skyTech font-mono text-[11px] font-bold">PostgreSQL</span>
+                </div>
+                <div class="grid grid-cols-3 gap-2 text-center">
+                  <div class="p-2 rounded-lg bg-bgAbyss/90 border border-borderTech">
+                    <div class="text-[10px] text-slate-400 font-mono">MÓDULO</div>
+                    <div class="text-xs font-bold text-white mt-0.5">Facturación</div>
+                  </div>
+                  <div class="p-2 rounded-lg bg-bgAbyss/90 border border-borderTech">
+                    <div class="text-[10px] text-slate-400 font-mono">CONTROL</div>
+                    <div class="text-xs font-bold text-cyanElectric mt-0.5">Inventario</div>
+                  </div>
+                  <div class="p-2 rounded-lg bg-bgAbyss/90 border border-borderTech">
+                    <div class="text-[10px] text-slate-400 font-mono">TARGET</div>
+                    <div class="text-xs font-bold text-white mt-0.5">PyMEs</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Detalles del Proyecto -->
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex items-baseline gap-3 mb-2">
+                  <span class="font-display font-bold text-3xl text-cyanElectric">01</span>
+                  <h3 class="font-display text-xl sm:text-2xl font-bold uppercase text-white leading-tight">
+                    SICFI — Facturación e Inventario
+                  </h3>
+                </div>
+                <p class="text-xs font-mono text-skyTech uppercase font-semibold mb-3">
+                  Proyecto Personal • Solución Comercial para Microempresarios
+                </p>
+                <p class="text-sm sm:text-[15px] text-slate-200 leading-relaxed mb-5">
+                  Sistema integrado creado para impulsar negocios y microempresarios mediante el control ágil de ventas, facturación, movimientos de almacén y reportes de stock en tiempo real.
+                </p>
+              </div>
+
+              <div class="pt-4 border-t border-borderTech flex flex-wrap gap-2">
+                <span class="px-2.5 py-1 rounded-md bg-bgAbyss border border-borderTech text-xs font-mono text-cyanElectric">PHP</span>
+                <span class="px-2.5 py-1 rounded-md bg-bgAbyss border border-borderTech text-xs font-mono text-slate-200">PostgreSQL</span>
+                <span class="px-2.5 py-1 rounded-md bg-bgAbyss border border-borderTech text-xs font-mono text-slate-200">JS / AJAX</span>
+                <span class="px-2.5 py-1 rounded-md bg-bgAbyss border border-borderTech text-xs font-mono text-slate-200">HTML5 / CSS3</span>
+                <span class="px-2.5 py-1 rounded-md bg-bgAbyss border border-borderTech text-xs font-mono text-slate-300">Laragon</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROYECTO 02: SIGEFICON -->
+        <article class="project-card build-block tech-panel rounded-3xl overflow-hidden flex flex-col justify-between transition-all" data-category="web" data-build-tag="BUILD_APP // SIGEFICON_TSU.PHP">
+          <div class="wire-overlay"><span class="wire-tag">BUILD_APP // SIGEFICON_TSU.PHP</span><div class="wire-handle tl"></div><div class="wire-handle tr"></div><div class="wire-handle bl"></div><div class="wire-handle br"></div></div>
+          <div class="block-content flex flex-col h-full">
+            <div class="p-5 bg-bgAbyss/90 border-b border-borderTech">
+              <div class="rounded-2xl bg-[#071329] border border-cobaltGlow/45 p-4">
+                <div class="flex items-center justify-between mb-3.5">
+                  <div class="flex items-center gap-3">
+                    <!-- Emblema SIGEFICON (Reemplazable por SIGEFICON.png) -->
+                    <div class="w-10 h-10 rounded-xl bg-cobaltGlow/25 border border-skyTech/50 flex items-center justify-center text-skyTech">
+                      <i class="fa-solid fa-city text-base"></i>
+                    </div>
+                    <div>
+                      <div class="font-display font-bold text-lg tracking-wide text-white leading-none">SIGEFICON</div>
+                      <div class="text-[11px] font-mono text-skyTech mt-0.5">Residencias Villaflores</div>
+                    </div>
+                  </div>
+                  <span class="px-2.5 py-1 rounded-md bg-cyanElectric/15 border border-cyanElectric/40 text-cyanElectric font-mono text-[11px] font-bold">MariaDB</span>
+                </div>
+                <div class="grid grid-cols-3 gap-2 text-center">
+                  <div class="p-2 rounded-lg bg-bgAbyss/90 border border-borderTech">
+                    <div class="text-[10px] text-slate-400 font-mono">RECIBOS</div>
+                    <div class="text-xs font-bold text-white mt-0.5">Alícuotas</div>
+                  </div>
+                  <div class="p-2 rounded-lg bg-bgAbyss/90 border border-borderTech">
+                    <div class="text-[10px] text-slate-400 font-mono">FINANZAS</div>
+                    <div class="text-xs font-bold text-skyTech mt-0.5">Balances</div>
+                  </div>
+                  <div class="p-2 rounded-lg bg-bgAbyss/90 border border-borderTech">
+                    <div class="text-[10px] text-slate-400 font-mono">GRADO</div>
+                    <div class="text-xs font-bold text-white mt-0.5">TSU UPTEC</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex items-baseline gap-3 mb-2">
+                  <span class="font-display font-bold text-3xl text-cyanElectric">02</span>
+                  <h3 class="font-display text-xl sm:text-2xl font-bold uppercase text-white leading-tight">
+                    SIGEFICON — Finanzas de Condominios
+                  </h3>
+                </div>
+                <p class="text-xs font-mono text-skyTech uppercase font-semibold mb-3">
+                  Proyecto Universitario de Grado TSU • Residencias Villaflores
+                </p>
+                <p class="text-sm sm:text-[15px] text-slate-200 leading-relaxed mb-5">
+                  Sistema de Gestión de Finanzas para Condominios desarrollado para automatizar la facturación mensual, cálculo de alícuotas, conciliación de pagos y reportes contables.
+                </p>
+              </div>
+
+              <div class="pt-4 border-t border-borderTech flex flex-wrap gap-2">
+                <span class="px-2.5 py-1 rounded-md bg-bgAbyss border border-borderTech text-xs font-mono text-cyanElectric">PHP</span>
+                <span class="px-2.5 py-1 rounded-md bg-bgAbyss border border-borderTech text-xs font-mono text-slate-200">MariaDB</span>
+                <span class="px-2.5 py-1 rounded-md bg-bgAbyss border border-borderTech text-xs font-mono text-slate-200">JS / JScript / AJAX</span>
+                <span class="px-2.5 py-1 rounded-md bg-bgAbyss border border-borderTech text-xs font-mono text-slate-200">HTML / CSS</span>
+                <span class="px-2.5 py-1 rounded-md bg-bgAbyss border border-borderTech text-xs font-mono text-slate-300">XAMPP</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROYECTO 03: SISTEMA_CONTROL_IVOO -->
+        <article class="project-card build-block tech-panel rounded-3xl overflow-hidden flex flex-col justify-between transition-all" data-category="appscript" data-build-tag="BUILD_SCRIPT // CONTROL_IVOO.GS">
+          <div class="wire-overlay"><span class="wire-tag">BUILD_SCRIPT // CONTROL_IVOO.GS</span><div class="wire-handle tl"></div><div class="wire-handle tr"></div><div class="wire-handle bl"></div><div class="wire-handle br"></div></div>
+          <div class="block-content flex flex-col h-full">
+            <div class="p-5 bg-bgAbyss/90 border-b border-borderTech">
+              <div class="rounded-2xl bg-[#071329] border border-cyanElectric/30 p-4">
+                <div class="flex items-center justify-between mb-3.5">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-cyanElectric/15 border border-cyanElectric/45 flex items-center justify-center text-cyanElectric">
+                      <i class="fa-solid fa-boxes-stacked text-base"></i>
+                    </div>
+                    <div>
+                      <div class="font-display font-bold text-lg tracking-wide text-white leading-none">CONTROL_IVOO</div>
+                      <div class="text-[11px] font-mono text-cyanElectric mt-0.5">Almacén e Inventario</div>
+                    </div>
+                  </div>
+                  <span class="px-2.5 py-1 rounded-md bg-emerald-500/15 border border-emerald-400/40 text-emerald-300 font-mono text-[11px] font-bold">Apps Script</span>
+                </div>
+                <div class="grid grid-cols-3 gap-2 text-center">
+                  <div class="p-2 rounded-lg bg-bgAbyss/90 border border-borderTech">
+                    <div class="text-[10px] text-slate-400 font-mono">EXACTITUD</div>
+                    <div class="text-xs font-bold text-cyanElectric mt-0.5">&gt;98%</div>
+                  </div>
+                  <div class="p-2 rounded-lg bg-bgAbyss/90 border border-borderTech">
+                    <div class="text-[10px] text-slate-400 font-mono">AUDITORÍA</div>
+                    <div class="text-xs font-bold text-white mt-0.5">Cíclica</div>
+                  </div>
+                  <div class="p-2 rounded-lg bg-bgAbyss/90 border border-borderTech">
+                    <div class="text-[10px] text-slate-400 font-mono">ENTORNO</div>
+                    <div class="text-xs font-bold text-skyTech mt-0.5">Cloud</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex items-baseline gap-3 mb-2">
+                  <span class="font-display font-bold text-3xl text-cyanElectric">03</span>
+                  <h3 class="font-display text-xl sm:text-2xl font-bold uppercase text-white leading-tight">
+                    SISTEMA_CONTROL_IVOO
+                  </h3>
+                </div>
+                <p class="text-xs font-mono text-skyTech uppercase font-semibold mb-3">
+                  Control Interno • Gestión Operativa de Almacén e Inventario
+                </p>
+                <p class="text-sm sm:text-[15px] text-slate-200 leading-relaxed mb-5">
+                  Sistema interno desarrollado en Google Apps Script para trazabilidad exacta de mercancía de alto valor, recepción, picking/packing y conciliación de inventarios cíclicos.
+                </p>
+              </div>
+
+              <div class="pt-4 border-t border-borderTech flex flex-wrap gap-2">
+                <span class="px-2.5 py-1 rounded-md bg-bgAbyss border border-borderTech text-xs font-mono text-cyanElectric">Google Apps Script</span>
+                <span class="px-2.5 py-1 rounded-md bg-bgAbyss border border-borderTech text-xs font-mono text-slate-200">Google Workspace</span>
+                <span class="px-2.5 py-1 rounded-md bg-bgAbyss border border-borderTech text-xs font-mono text-slate-200">HTML Service</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROYECTO 04: GTH IVOO -->
+        <article class="project-card build-block tech-panel rounded-3xl overflow-hidden flex flex-col justify-between transition-all" data-category="appscript" data-build-tag="BUILD_SCRIPT // GTH_IVOO.GS">
+          <div class="wire-overlay"><span class="wire-tag">BUILD_SCRIPT // GTH_IVOO.GS</span><div class="wire-handle tl"></div><div class="wire-handle tr"></div><div class="wire-handle bl"></div><div class="wire-handle br"></div></div>
+          <div class="block-content flex flex-col h-full">
+            <div class="p-5 bg-bgAbyss/90 border-b border-borderTech">
+              <div class="rounded-2xl bg-[#071329] border border-violetGlow/45 p-4">
+                <div class="flex items-center justify-between mb-3.5">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-violetGlow/25 border border-fuchsia-400/50 flex items-center justify-center text-fuchsia-300">
+                      <i class="fa-solid fa-users-gear text-base"></i>
+                    </div>
+                    <div>
+                      <div class="font-display font-bold text-lg tracking-wide text-white leading-none">GTH — IVOO</div>
+                      <div class="text-[11px] font-mono text-fuchsia-300 mt-0.5">Gestión Humana</div>
+                    </div>
+                  </div>
+                  <span class="px-2.5 py-1 rounded-md bg-violetGlow/25 border border-violetGlow/50 text-fuchsia-300 font-mono text-[11px] font-bold">Control Interno</span>
+                </div>
+                <div class="grid grid-cols-3 gap-2 text-center">
+                  <div class="p-2 rounded-lg bg-bgAbyss/90 border border-borderTech">
+                    <div class="text-[10px] text-slate-400 font-mono">EQUIPO</div>
+                    <div class="text-xs font-bold text-white mt-0.5">Personal</div>
+                  </div>
+                  <div class="p-2 rounded-lg bg-bgAbyss/90 border border-borderTech">
+                    <div class="text-[10px] text-slate-400 font-mono">CONTROL</div>
+                    <div class="text-xs font-bold text-fuchsia-300 mt-0.5">Asistencia</div>
+                  </div>
+                  <div class="p-2 rounded-lg bg-bgAbyss/90 border border-borderTech">
+                    <div class="text-[10px] text-slate-400 font-mono">DATA</div>
+                    <div class="text-xs font-bold text-white mt-0.5">Reportes</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex items-baseline gap-3 mb-2">
+                  <span class="font-display font-bold text-3xl text-cyanElectric">04</span>
+                  <h3 class="font-display text-xl sm:text-2xl font-bold uppercase text-white leading-tight">
+                    Sistema de Gestión Humana (GTH) — IVOO
+                  </h3>
+                </div>
+                <p class="text-xs font-mono text-skyTech uppercase font-semibold mb-3">
+                  Control Interno • Automatización Administrativa de Talento Humano
+                </p>
+                <p class="text-sm sm:text-[15px] text-slate-200 leading-relaxed mb-5">
+                  Solución interna desarrollada sobre Google Apps Script para sistematizar el seguimiento operativo del personal, registro de novedades, asistencia y gestión administrativa.
+                </p>
+              </div>
+
+              <div class="pt-4 border-t border-borderTech flex flex-wrap gap-2">
+                <span class="px-2.5 py-1 rounded-md bg-bgAbyss border border-borderTech text-xs font-mono text-cyanElectric">Google Apps Script</span>
+                <span class="px-2.5 py-1 rounded-md bg-bgAbyss border border-borderTech text-xs font-mono text-slate-200">Google Sheets DB</span>
+                <span class="px-2.5 py-1 rounded-md bg-bgAbyss border border-borderTech text-xs font-mono text-slate-200">Automatización</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROYECTO 05: GALLETAS OSO -->
+        <article class="project-card build-block tech-panel rounded-3xl overflow-hidden flex flex-col justify-between transition-all md:col-span-2 lg:col-span-1" data-category="appscript" data-build-tag="BUILD_SCRIPT // GALLETAS_OSO.GS">
+          <div class="wire-overlay"><span class="wire-tag">BUILD_SCRIPT // GALLETAS_OSO.GS</span><div class="wire-handle tl"></div><div class="wire-handle tr"></div><div class="wire-handle bl"></div><div class="wire-handle br"></div></div>
+          <div class="block-content flex flex-col h-full">
+            <div class="p-5 bg-bgAbyss/90 border-b border-borderTech">
+              <div class="rounded-2xl bg-[#071329] border border-skyTech/40 p-4">
+                <div class="flex items-center justify-between mb-3.5">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-skyTech/20 border border-skyTech/50 flex items-center justify-center text-skyTech">
+                      <i class="fa-solid fa-store text-base"></i>
+                    </div>
+                    <div>
+                      <div class="font-display font-bold text-lg tracking-wide text-white leading-none">GALLETAS OSO</div>
+                      <div class="text-[11px] font-mono text-skyTech mt-0.5">Catálogo &amp; Pedidos</div>
+                    </div>
+                  </div>
+                  <span class="px-2.5 py-1 rounded-md bg-cyanElectric/15 border border-cyanElectric/40 text-cyanElectric font-mono text-[11px] font-bold">Ventas Web</span>
+                </div>
+                <div class="grid grid-cols-3 gap-2 text-center">
+                  <div class="p-2 rounded-lg bg-bgAbyss/90 border border-borderTech">
+                    <div class="text-[10px] text-slate-400 font-mono">VITRINA</div>
+                    <div class="text-xs font-bold text-white mt-0.5">Catálogo</div>
+                  </div>
+                  <div class="p-2 rounded-lg bg-bgAbyss/90 border border-borderTech">
+                    <div class="text-[10px] text-slate-400 font-mono">ÓRDENES</div>
+                    <div class="text-xs font-bold text-cyanElectric mt-0.5">Pedidos</div>
+                  </div>
+                  <div class="p-2 rounded-lg bg-bgAbyss/90 border border-borderTech">
+                    <div class="text-[10px] text-slate-400 font-mono">GESTIÓN</div>
+                    <div class="text-xs font-bold text-white mt-0.5">Admin</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex items-baseline gap-3 mb-2">
+                  <span class="font-display font-bold text-3xl text-cyanElectric">05</span>
+                  <h3 class="font-display text-xl sm:text-2xl font-bold uppercase text-white leading-tight">
+                    Galletas Oso — Catálogo de Ventas
+                  </h3>
+                </div>
+                <p class="text-xs font-mono text-skyTech uppercase font-semibold mb-3">
+                  Comercio Digital • Administración de Ventas y Pedidos
+                </p>
+                <p class="text-sm sm:text-[15px] text-slate-200 leading-relaxed mb-5">
+                  Sistema de ventas con catálogo digital interactivo para exhibición de productos y panel administrativo para recepción, registro y control de pedidos desarrollado con Google Apps Script.
+                </p>
+              </div>
+
+              <div class="pt-4 border-t border-borderTech flex flex-wrap gap-2">
+                <span class="px-2.5 py-1 rounded-md bg-bgAbyss border border-borderTech text-xs font-mono text-cyanElectric">Google Apps Script</span>
+                <span class="px-2.5 py-1 rounded-md bg-bgAbyss border border-borderTech text-xs font-mono text-slate-200">Catálogo Interactivo</span>
+                <span class="px-2.5 py-1 rounded-md bg-bgAbyss border border-borderTech text-xs font-mono text-slate-200">Control Pedidos</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Barra de Stack Tecnológico de Ingeniería Informática -->
+      <div class="build-block tech-panel mt-10 p-6 rounded-2xl" data-build-tag="STACK_MATRIX // HERRAMIENTAS">
+        <div class="wire-overlay"><span class="wire-tag">STACK_MATRIX // HERRAMIENTAS</span><div class="wire-handle tl"></div><div class="wire-handle tr"></div><div class="wire-handle bl"></div><div class="wire-handle br"></div></div>
+        <div class="block-content flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
+          <span class="font-mono text-xs sm:text-sm uppercase tracking-widest text-cyanElectric font-bold shrink-0">
+            // Stack &amp; Ecosistema Técnico:
+          </span>
+          <div class="flex flex-wrap gap-2.5">
+            <span class="px-3.5 py-1.5 rounded-xl bg-bgAbyss border border-borderTech text-xs sm:text-sm font-mono text-white"><i class="fa-brands fa-php text-cyanElectric mr-2"></i>PHP</span>
+            <span class="px-3.5 py-1.5 rounded-xl bg-bgAbyss border border-borderTech text-xs sm:text-sm font-mono text-white"><i class="fa-brands fa-js text-skyTech mr-2"></i>JavaScript / AJAX</span>
+            <span class="px-3.5 py-1.5 rounded-xl bg-bgAbyss border border-borderTech text-xs sm:text-sm font-mono text-white"><i class="fa-brands fa-html5 text-cyanElectric mr-2"></i>HTML5 / CSS3</span>
+            <span class="px-3.5 py-1.5 rounded-xl bg-bgAbyss border border-borderTech text-xs sm:text-sm font-mono text-white"><i class="fa-solid fa-database text-skyTech mr-2"></i>PostgreSQL</span>
+            <span class="px-3.5 py-1.5 rounded-xl bg-bgAbyss border border-borderTech text-xs sm:text-sm font-mono text-white"><i class="fa-solid fa-server text-cyanElectric mr-2"></i>MariaDB</span>
+            <span class="px-3.5 py-1.5 rounded-xl bg-bgAbyss border border-borderTech text-xs sm:text-sm font-mono text-white"><i class="fa-brands fa-google text-emerald-400 mr-2"></i>Google Apps Script</span>
+            <span class="px-3.5 py-1.5 rounded-xl bg-bgAbyss border border-borderTech text-xs sm:text-sm font-mono text-white"><i class="fa-solid fa-cubes text-cyanElectric mr-2"></i>SAP (ERP)</span>
+            <span class="px-3.5 py-1.5 rounded-xl bg-bgAbyss border border-borderTech text-xs sm:text-sm font-mono text-white"><i class="fa-solid fa-robot text-fuchsia-400 mr-2"></i>Agentes IA / Copilot</span>
+            <span class="px-3.5 py-1.5 rounded-xl bg-bgAbyss border border-borderTech text-xs sm:text-sm font-mono text-white"><i class="fa-solid fa-code text-skyTech mr-2"></i>Visual Studio Code</span>
+            <span class="px-3.5 py-1.5 rounded-xl bg-bgAbyss border border-borderTech text-xs sm:text-sm font-mono text-white"><i class="fa-brands fa-android text-emerald-400 mr-2"></i>Android Studio</span>
+            <span class="px-3.5 py-1.5 rounded-xl bg-bgAbyss border border-borderTech text-xs sm:text-sm font-mono text-white"><i class="fa-solid fa-screwdriver-wrench text-cyanElectric mr-2"></i>Soporte Técnico PC/Laptops</span>
+            <span class="px-3.5 py-1.5 rounded-xl bg-bgAbyss border border-borderTech text-xs sm:text-sm font-mono text-white"><i class="fa-solid fa-network-wired text-skyTech mr-2"></i>Redes y Servidores (Aprendiz)</span>
+            <span class="px-3.5 py-1.5 rounded-xl bg-bgAbyss border border-borderTech text-xs sm:text-sm font-mono text-white"><i class="fa-solid fa-file-excel text-emerald-400 mr-2"></i>Excel Avanzado</span>
+            <span class="px-3.5 py-1.5 rounded-xl bg-bgAbyss border border-borderTech text-xs sm:text-sm font-mono text-white"><i class="fa-solid fa-cubes text-fuchsia-400 mr-2"></i>ERP Valery / Stellar</span>
+            <span class="px-3.5 py-1.5 rounded-xl bg-bgAbyss border border-borderTech text-xs sm:text-sm font-mono text-white"><i class="fa-brands fa-linux text-skyTech mr-2"></i>Linux / Windows</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         NIVEL 03: AGENTES IA & AUTOMATIZACIÓN INTELIGENTE
+         ========================================================= -->
+    <section id="agentes-ia" data-depth-section="agentes-ia" class="page-section w-full px-4 sm:px-6 lg:px-8 pt-24 pb-16 border-t border-borderTech/70 justify-start">
+      <div class="build-block mb-12" data-build-tag="SECTION_03 // AGENTES_IA">
+        <div class="wire-overlay"><span class="wire-tag">SECTION_03 // AGENTES_IA</span><div class="wire-handle tl"></div><div class="wire-handle tr"></div><div class="wire-handle bl"></div><div class="wire-handle br"></div></div>
+        <div class="block-content flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+          <div>
+            <span class="font-mono text-xs sm:text-sm uppercase tracking-widest text-fuchsia-300 font-semibold block mb-2">
+              // 03_INTELIGENCIA_ARTIFICIAL_APLICADA
+            </span>
+            <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-white leading-[1.03]">
+              AGENTES IA EN <span class="text-gradient-tech">MI FLUJO DE TRABAJO.</span>
+            </h2>
+          </div>
+          <p class="text-sm sm:text-base text-slate-300 max-w-xl leading-relaxed">
+            Perfil <strong class="text-white">técnico, con liderazgo y enfoque profesional</strong>. Experiencia práctica en <strong class="text-white">uso y trabajo con agentes IA</strong> para diseñar, construir y optimizar sistemas con objetivos claros: calidad, trazabilidad y automatización de procesos operativos desde mi entorno en <strong class="text-cyanElectric">Visual Studio Code</strong> y <strong class="text-cyanElectric">Android Studio</strong>.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-7">
+        <div class="lg:col-span-7 build-block tech-panel ai-glow rounded-3xl p-6 sm:p-8" data-build-tag="AI_CORE // WORKFLOW_AGENTICO">
+          <div class="wire-overlay"><span class="wire-tag">AI_CORE // WORKFLOW_AGENTICO</span><div class="wire-handle tl"></div><div class="wire-handle tr"></div><div class="wire-handle bl"></div><div class="wire-handle br"></div></div>
+          <div class="block-content">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-12 h-12 rounded-xl bg-fuchsia-500/20 border border-fuchsia-400/50 flex items-center justify-center text-fuchsia-300 text-xl">
+                <i class="fa-solid fa-robot"></i>
+              </div>
+              <div>
+                <h3 class="font-display text-2xl font-bold uppercase text-white leading-tight">Cómo trabajo con agentes IA</h3>
+                <p class="font-mono text-xs text-skyTech uppercase tracking-wider">Copilotos, asistentes y agentes en desarrollo real</p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="p-4 rounded-2xl bg-bgAbyss/80 border border-borderTech">
+                <div class="flex items-center gap-2 text-cyanElectric font-mono text-xs font-bold uppercase mb-2"><i class="fa-solid fa-code"></i> Desarrollo asistido</div>
+                <p class="text-sm text-slate-200 leading-relaxed">Uso de GitHub Copilot y agentes de codificación para acelerar implementación en PHP, JavaScript, SQL y Google Apps Script, manteniendo revisión y criterio técnico.</p>
+              </div>
+              <div class="p-4 rounded-2xl bg-bgAbyss/80 border border-borderTech">
+                <div class="flex items-center gap-2 text-fuchsia-300 font-mono text-xs font-bold uppercase mb-2"><i class="fa-solid fa-diagram-project"></i> Diseño y arquitectura</div>
+                <p class="text-sm text-slate-200 leading-relaxed">Apoyo de IA para descomponer requisitos, proponer flujos, modelar datos y documentar soluciones orientadas a inventario, logística y procesos administrativos.</p>
+              </div>
+              <div class="p-4 rounded-2xl bg-bgAbyss/80 border border-borderTech">
+                <div class="flex items-center gap-2 text-skyTech font-mono text-xs font-bold uppercase mb-2"><i class="fa-solid fa-bug-slash"></i> Depuración y calidad</div>
+                <p class="text-sm text-slate-200 leading-relaxed">Análisis asistido de errores, refactorización incremental, generación de casos de prueba y validación de comportamientos para mejorar estabilidad y mantenibilidad.</p>
+              </div>
+              <div class="p-4 rounded-2xl bg-bgAbyss/80 border border-borderTech">
+                <div class="flex items-center gap-2 text-emerald-300 font-mono text-xs font-bold uppercase mb-2"><i class="fa-solid fa-gears"></i> Automatización operativa</div>
+                <p class="text-sm text-slate-200 leading-relaxed">Integración de prompts, plantillas y flujos agénticos en tareas repetitivas: reportes, consultas, scripts, documentación técnica y soporte a la toma de decisiones.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 space-y-7">
+          <div class="build-block tech-panel rounded-3xl p-6 sm:p-7" data-build-tag="AI_TOOLS // STACK_IA">
+            <div class="wire-overlay"><span class="wire-tag">AI_TOOLS // STACK_IA</span><div class="wire-handle tl"></div><div class="wire-handle tr"></div><div class="wire-handle bl"></div><div class="wire-handle br"></div></div>
+            <div class="block-content">
+              <h3 class="font-mono text-xs sm:text-sm uppercase tracking-widest text-fuchsia-300 font-bold mb-4 pb-3 border-b border-borderTech">Herramientas, entorno y agentes que utilizo</h3>
+              <div class="flex flex-wrap gap-2.5">
+                <span class="px-3 py-1.5 rounded-xl bg-bgAbyss border border-cyanElectric/40 text-xs sm:text-sm font-mono text-white flex items-center gap-2"><i class="fa-solid fa-code text-skyTech"></i>Visual Studio Code <span class="badge-pill text-cyanElectric">Entorno</span></span>
+                <span class="px-3 py-1.5 rounded-xl bg-bgAbyss border border-cyanElectric/40 text-xs sm:text-sm font-mono text-white flex items-center gap-2"><i class="fa-brands fa-android text-emerald-400"></i>Android Studio <span class="badge-pill text-cyanElectric">Entorno</span></span>
+                <span class="px-3 py-1.5 rounded-xl bg-bgAbyss border border-fuchsia-400/40 text-xs sm:text-sm font-mono text-white flex items-center gap-2"><i class="fa-brands fa-github text-white"></i>GitHub Copilot <span class="badge-pill text-cyanElectric">Agente</span></span>
+                <span class="px-3 py-1.5 rounded-xl bg-bgAbyss border border-borderTech text-xs sm:text-sm font-mono text-white flex items-center gap-2"><i class="fa-solid fa-comments text-skyTech"></i>ChatGPT <span class="badge-pill text-slate-300">Asistente</span></span>
+                <span class="px-3 py-1.5 rounded-xl bg-bgAbyss border border-borderTech text-xs sm:text-sm font-mono text-white flex items-center gap-2"><i class="fa-solid fa-wand-magic-sparkles text-fuchsia-300"></i>Gemini <span class="badge-pill text-slate-300">Asistente</span></span>
+                <span class="px-3 py-1.5 rounded-xl bg-bgAbyss border border-borderTech text-xs sm:text-sm font-mono text-white flex items-center gap-2"><i class="fa-solid fa-brain text-cyanElectric"></i>Claude <span class="badge-pill text-slate-300">Asistente</span></span>
+                <span class="px-3 py-1.5 rounded-xl bg-bgAbyss border border-borderTech text-xs sm:text-sm font-mono text-white flex items-center gap-2"><i class="fa-solid fa-terminal text-emerald-300"></i>Flujos agénticos <span class="badge-pill text-emerald-300">En uso</span></span>
+                <span class="px-3 py-1.5 rounded-xl bg-bgAbyss border border-borderTech text-xs sm:text-sm font-mono text-white flex items-center gap-2"><i class="fa-solid fa-file-lines text-skyTech"></i>Prompting &amp; contexto <span class="badge-pill text-cyanElectric">Práctica</span></span>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mt-4">
+                Enfoque: usar IA como multiplicador de productividad sin perder validación humana, trazabilidad y calidad en sistemas reales de negocio y logística.
+              </p>
+            </div>
+          </div>
+
+          <div class="build-block rounded-3xl bg-gradient-to-br from-[#2e1065] via-[#1e1b4b] to-[#0b1328] border border-fuchsia-400/40 p-6 sm:p-7 ai-glow" data-build-tag="AI_MANIFESTO // IMPACTO">
+            <div class="wire-overlay"><span class="wire-tag">AI_MANIFESTO // IMPACTO</span><div class="wire-handle tl"></div><div class="wire-handle tr"></div><div class="wire-handle bl"></div><div class="wire-handle br"></div></div>
+            <div class="block-content">
+              <span class="font-mono text-xs uppercase tracking-widest text-fuchsia-300 font-bold block mb-2">// Impacto aplicado</span>
+              <ul class="space-y-3 text-sm sm:text-[15px] text-slate-100">
+                <li class="flex gap-3"><i class="fa-solid fa-bolt text-cyanElectric mt-1"></i><span>Prototipado y entrega más rápida de herramientas internas y módulos web.</span></li>
+                <li class="flex gap-3"><i class="fa-solid fa-bolt text-cyanElectric mt-1"></i><span>Mejor documentación técnica y transferencia de conocimiento en proyectos.</span></li>
+                <li class="flex gap-3"><i class="fa-solid fa-bolt text-cyanElectric mt-1"></i><span>Automatización apoyada por IA para reducir tareas manuales y errores operativos.</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         NIVEL 04: LENGUAJES DE PROGRAMACIÓN, LOGOS E INSIGNIAS
+         ========================================================= -->
+    <section id="lenguajes" data-depth-section="lenguajes" class="page-section w-full px-4 sm:px-6 lg:px-8 pt-24 pb-16 border-t border-borderTech/70 justify-start">
+      <div class="build-block mb-10" data-build-tag="SECTION_04 // LENGUAJES_Y_BADGES">
+        <div class="wire-overlay"><span class="wire-tag">SECTION_04 // LENGUAJES_Y_BADGES</span><div class="wire-handle tl"></div><div class="wire-handle tr"></div><div class="wire-handle bl"></div><div class="wire-handle br"></div></div>
+        <div class="block-content flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+          <div>
+            <span class="font-mono text-xs sm:text-sm uppercase tracking-widest text-cyanElectric font-semibold block mb-2">
+              // 04_LENGUAJES_DE_PROGRAMACIÓN
+            </span>
+            <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-white leading-[1.03]">
+              TODOS LOS LENGUAJES.<br/><span class="text-gradient-tech">LOGOS E INSIGNIAS.</span>
+            </h2>
+          </div>
+          <p class="text-sm sm:text-base text-slate-300 max-w-xl leading-relaxed">
+            Ecosistema completo de lenguajes de programación con identidad visual (logo) e insignias de experiencia: uso en proyectos, dominio práctico, base académica y exploración continua.
+          </p>
+        </div>
+      </div>
+
+      <div class="build-block tech-panel rounded-3xl p-5 sm:p-6 mb-8" data-build-tag="LANG_MARQUEE // SHOWCASE">
+        <div class="wire-overlay"><span class="wire-tag">LANG_MARQUEE // SHOWCASE</span><div class="wire-handle tl"></div><div class="wire-handle tr"></div><div class="wire-handle bl"></div><div class="wire-handle br"></div></div>
+        <div class="block-content tech-marquee">
+          <div class="tech-marquee-track py-2">
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-php-plain colored text-xl"></i>PHP</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-javascript-plain colored text-xl"></i>JavaScript</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-typescript-plain colored text-xl"></i>TypeScript</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-python-plain colored text-xl"></i>Python</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-java-plain colored text-xl"></i>Java</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-c-plain colored text-xl"></i>C</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-cplusplus-plain colored text-xl"></i>C++</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-csharp-plain colored text-xl"></i>C#</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-azuresqldatabase-plain colored text-xl"></i>SQL</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-go-original-wordmark colored text-xl"></i>Go</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-rust-original text-xl text-orange-400"></i>Rust</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-ruby-plain colored text-xl"></i>Ruby</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-kotlin-plain colored text-xl"></i>Kotlin</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-swift-plain colored text-xl"></i>Swift</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-dart-plain colored text-xl"></i>Dart</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-r-plain colored text-xl"></i>R</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-scala-plain colored text-xl"></i>Scala</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-perl-plain colored text-xl"></i>Perl</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-lua-plain colored text-xl"></i>Lua</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-haskell-plain colored text-xl"></i>Haskell</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-bash-plain colored text-xl"></i>Bash</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-matlab-plain colored text-xl"></i>MATLAB</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-julia-plain colored text-xl"></i>Julia</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-elixir-plain colored text-xl"></i>Elixir</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-objectivec-plain colored text-xl"></i>Objective-C</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-html5-plain colored text-xl"></i>HTML</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-css3-plain colored text-xl"></i>CSS</span>
+            <!-- duplicado para bucle continuo -->
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-php-plain colored text-xl"></i>PHP</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-javascript-plain colored text-xl"></i>JavaScript</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-typescript-plain colored text-xl"></i>TypeScript</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-python-plain colored text-xl"></i>Python</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-java-plain colored text-xl"></i>Java</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-c-plain colored text-xl"></i>C</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-cplusplus-plain colored text-xl"></i>C++</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-csharp-plain colored text-xl"></i>C#</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-azuresqldatabase-plain colored text-xl"></i>SQL</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-go-original-wordmark colored text-xl"></i>Go</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-rust-original text-xl text-orange-400"></i>Rust</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-ruby-plain colored text-xl"></i>Ruby</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-kotlin-plain colored text-xl"></i>Kotlin</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-swift-plain colored text-xl"></i>Swift</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-dart-plain colored text-xl"></i>Dart</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-r-plain colored text-xl"></i>R</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-scala-plain colored text-xl"></i>Scala</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-perl-plain colored text-xl"></i>Perl</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-lua-plain colored text-xl"></i>Lua</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-haskell-plain colored text-xl"></i>Haskell</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-bash-plain colored text-xl"></i>Bash</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-matlab-plain colored text-xl"></i>MATLAB</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-julia-plain colored text-xl"></i>Julia</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-elixir-plain colored text-xl"></i>Elixir</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-objectivec-plain colored text-xl"></i>Objective-C</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-html5-plain colored text-xl"></i>HTML</span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bgAbyss border border-borderTech text-sm font-mono text-white"><i class="devicon-css3-plain colored text-xl"></i>CSS</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-5">
+        <article class="build-block lang-card rounded-2xl p-4 text-center" data-build-tag="LANG // PHP"><div class="wire-overlay"><span class="wire-tag">PHP</span></div><div class="block-content"><i class="devicon-php-plain colored text-4xl"></i><h3 class="font-display font-bold text-white mt-2">PHP</h3><span class="inline-block mt-2 px-2.5 py-1 rounded-md bg-cyanElectric/15 border border-cyanElectric/40 text-cyanElectric badge-pill">Uso activo</span></div></article>
+        <article class="build-block lang-card rounded-2xl p-4 text-center" data-build-tag="LANG // JAVASCRIPT"><div class="wire-overlay"><span class="wire-tag">JS</span></div><div class="block-content"><i class="devicon-javascript-plain colored text-4xl"></i><h3 class="font-display font-bold text-white mt-2">JavaScript</h3><span class="inline-block mt-2 px-2.5 py-1 rounded-md bg-cyanElectric/15 border border-cyanElectric/40 text-cyanElectric badge-pill">Uso activo</span></div></article>
+        <article class="build-block lang-card rounded-2xl p-4 text-center" data-build-tag="LANG // SQL"><div class="wire-overlay"><span class="wire-tag">SQL</span></div><div class="block-content"><i class="devicon-azuresqldatabase-plain colored text-4xl"></i><h3 class="font-display font-bold text-white mt-2">SQL</h3><span class="inline-block mt-2 px-2.5 py-1 rounded-md bg-cyanElectric/15 border border-cyanElectric/40 text-cyanElectric badge-pill">Proyectos reales</span></div></article>
+        <article class="build-block lang-card rounded-2xl p-4 text-center" data-build-tag="LANG // HTML"><div class="wire-overlay"><span class="wire-tag">HTML</span></div><div class="block-content"><i class="devicon-html5-plain colored text-4xl"></i><h3 class="font-display font-bold text-white mt-2">HTML</h3><span class="inline-block mt-2 px-2.5 py-1 rounded-md bg-cyanElectric/15 border border-cyanElectric/40 text-cyanElectric badge-pill">Uso activo</span></div></article>
+        <article class="build-block lang-card rounded-2xl p-4 text-center" data-build-tag="LANG // CSS"><div class="wire-overlay"><span class="wire-tag">CSS</span></div><div class="block-content"><i class="devicon-css3-plain colored text-4xl"></i><h3 class="font-display font-bold text-white mt-2">CSS</h3><span class="inline-block mt-2 px-2.5 py-1 rounded-md bg-cyanElectric/15 border border-cyanElectric/40 text-cyanElectric badge-pill">Uso activo</span></div></article>
+        <article class="build-block lang-card rounded-2xl p-4 text-center" data-build-tag="LANG // TYPESCRIPT"><div class="wire-overlay"><span class="wire-tag">TS</span></div><div class="block-content"><i class="devicon-typescript-plain colored text-4xl"></i><h3 class="font-display font-bold text-white mt-2">TypeScript</h3><span class="inline-block mt-2 px-2.5 py-1 rounded-md bg-skyTech/15 border border-skyTech/40 text-skyTech badge-pill">Familiarizado</span></div></article>
+
+        <article class="build-block lang-card rounded-2xl p-4 text-center" data-build-tag="LANG // PYTHON"><div class="wire-overlay"><span class="wire-tag">PY</span></div><div class="block-content"><i class="devicon-python-plain colored text-4xl"></i><h3 class="font-display font-bold text-white mt-2">Python</h3><span class="inline-block mt-2 px-2.5 py-1 rounded-md bg-skyTech/15 border border-skyTech/40 text-skyTech badge-pill">Base / Automatización</span></div></article>
+        <article class="build-block lang-card rounded-2xl p-4 text-center" data-build-tag="LANG // JAVA"><div class="wire-overlay"><span class="wire-tag">JAVA</span></div><div class="block-content"><i class="devicon-java-plain colored text-4xl"></i><h3 class="font-display font-bold text-white mt-2">Java</h3><span class="inline-block mt-2 px-2.5 py-1 rounded-md bg-violetGlow/20 border border-violetGlow/40 text-fuchsia-300 badge-pill">Base académica</span></div></article>
+        <article class="build-block lang-card rounded-2xl p-4 text-center" data-build-tag="LANG // C"><div class="wire-overlay"><span class="wire-tag">C</span></div><div class="block-content"><i class="devicon-c-plain colored text-4xl"></i><h3 class="font-display font-bold text-white mt-2">C</h3><span class="inline-block mt-2 px-2.5 py-1 rounded-md bg-violetGlow/20 border border-violetGlow/40 text-fuchsia-300 badge-pill">Base académica</span></div></article>
+        <article class="build-block lang-card rounded-2xl p-4 text-center" data-build-tag="LANG // CPP"><div class="wire-overlay"><span class="wire-tag">C++</span></div><div class="block-content"><i class="devicon-cplusplus-plain colored text-4xl"></i><h3 class="font-display font-bold text-white mt-2">C++</h3><span class="inline-block mt-2 px-2.5 py-1 rounded-md bg-violetGlow/20 border border-violetGlow/40 text-fuchsia-300 badge-pill">Base académica</span></div></article>
+        <article class="build-block lang-card rounded-2xl p-4 text-center" data-build-tag="LANG // CSHARP"><div class="wire-overlay"><span class="wire-tag">C#</span></div><div class="block-content"><i class="devicon-csharp-plain colored text-4xl"></i><h3 class="font-display font-bold text-white mt-2">C#</h3><span class="inline-block mt-2 px-2.5 py-1 rounded-md bg-slate-500/20 border border-slate-400/40 text-slate-200 badge-pill">Familiarizado</span></div></article>
+        <article class="build-block lang-card rounded-2xl p-4 text-center" data-build-tag="LANG // GO"><div class="wire-overlay"><span class="wire-tag">GO</span></div><div class="block-content"><i class="devicon-go-original-wordmark colored text-4xl"></i><h3 class="font-display font-bold text-white mt-2">Go</h3><span class="inline-block mt-2 px-2.5 py-1 rounded-md bg-slate-500/20 border border-slate-400/40 text-slate-200 badge-pill">Explorando</span></div></article>
+
+        <article class="build-block lang-card rounded-2xl p-4 text-center" data-build-tag="LANG // RUST"><div class="wire-overlay"><span class="wire-tag">RUST</span></div><div class="block-content"><i class="devicon-rust-original text-4xl text-orange-400"></i><h3 class="font-display font-bold text-white mt-2">Rust</h3><span class="inline-block mt-2 px-2.5 py-1 rounded-md bg-slate-500/20 border border-slate-400/40 text-slate-200 badge-pill">Explorando</span></div></article>
+        <article class="build-block lang-card rounded-2xl p-4 text-center" data-build-tag="LANG // RUBY"><div class="wire-overlay"><span class="wire-tag">RB</span></div><div class="block-content"><i class="devicon-ruby-plain colored text-4xl"></i><h3 class="font-display font-bold text-white mt-2">Ruby</h3><span class="inline-block mt-2 px-2.5 py-1 rounded-md bg-slate-500/20 border border-slate-400/40 text-slate-200 badge-pill">Explorando</span></div></article>
+        <article class="build-block lang-card rounded-2xl p-4 text-center" data-build-tag="LANG // KOTLIN"><div class="wire-overlay"><span class="wire-tag">KT</span></div><div class="block-content"><i class="devicon-kotlin-plain colored text-4xl"></i><h3 class="font-display font-bold text-white mt-2">Kotlin</h3><span class="inline-block mt-2 px-2.5 py-1 rounded-md bg-slate-500/20 border border-slate-400/40 text-slate-200 badge-pill">Explorando</span></div></article>
+        <article class="build-block lang-card rounded-2xl p-4 text-center" data-build-tag="LANG // SWIFT"><div class="wire-overlay"><span class="wire-tag">SWIFT</span></div><div class="block-content"><i class="devicon-swift-plain colored text-4xl"></i><h3 class="font-display font-bold text-white mt-2">Swift</h3><span class="inline-block mt-2 px-2.5 py-1 rounded-md bg-slate-500/20 border border-slate-400/40 text-slate-200 badge-pill">Explorando</span></div></article>
+        <article class="build-block lang-card rounded-2xl p-4 text-center" data-build-tag="LANG // DART"><div class="wire-overlay"><span class="wire-tag">DART</span></div><div class="block-content"><i class="devicon-dart-plain colored text-4xl"></i><h3 class="font-display font-bold text-white mt-2">Dart</h3><span class="inline-block mt-2 px-2.5 py-1 rounded-md bg-slate-500/20 border border-slate-400/40 text-slate-200 badge-pill">Explorando</span></div></article>
+        <article class="build-block lang-card rounded-2xl p-4 text-center" data-build-tag="LANG // R"><div class="wire-overlay"><span class="wire-tag">R</span></div><div class="block-content"><i class="devicon-r-plain colored text-4xl"></i><h3 class="font-display font-bold text-white mt-2">R</h3><span class="inline-block mt-2 px-2.5 py-1 rounded-md bg-slate-500/20 border border-slate-400/40 text-slate-200 badge-pill">Explorando</span></div></article>
+
+        <article class="build-block lang-card rounded-2xl p-4 text-center" data-build-tag="LANG // SCALA"><div class="wire-overlay"><span class="wire-tag">SCALA</span></div><div class="block-content"><i class="devicon-scala-plain colored text-4xl"></i><h3 class="font-display font-bold text-white mt-2">Scala</h3><span class="inline-block mt-2 px-2.5 py-1 rounded-md bg-slate-500/20 border border-slate-400/40 text-slate-200 badge-pill">Explorando</span></div></article>
+        <article class="build-block lang-card rounded-2xl p-4 text-center" data-build-tag="LANG // PERL"><div class="wire-overlay"><span class="wire-tag">PERL</span></div><div class="block-content"><i class="devicon-perl-plain colored text-4xl"></i><h3 class="font-display font-bold text-white mt-2">Perl</h3><span class="inline-block mt-2 px-2.5 py-1 rounded-md bg-slate-500/20 border border-slate-400/40 text-slate-200 badge-pill">Explorando</span></div></article>
+        <article class="build-block lang-card rounded-2xl p-4 text-center" data-build-tag="LANG // LUA"><div class="wire-overlay"><span class="wire-tag">LUA</span></div><div class="block-content"><i class="devicon-lua-plain colored text-4xl"></i><h3 class="font-display font-bold text-white mt-2">Lua</h3><span class="inline-block mt-2 px-2.5 py-1 rounded-md bg-slate-500/20 border border-slate-400/40 text-slate-200 badge-pill">Explorando</span></div></article>
+        <article class="build-block lang-card rounded-2xl p-4 text-center" data-build-tag="LANG // HASKELL"><div class="wire-overlay"><span class="wire-tag">HS</span></div><div class="block-content"><i class="devicon-haskell-plain colored text-4xl"></i><h3 class="font-display font-bold text-white mt-2">Haskell</h3><span class="inline-block mt-2 px-2.5 py-1 rounded-md bg-slate-500/20 border border-slate-400/40 text-slate-200 badge-pill">Explorando</span></div></article>
+        <article class="build-block lang-card rounded-2xl p-4 text-center" data-build-tag="LANG // BASH"><div class="wire-overlay"><span class="wire-tag">BASH</span></div><div class="block-content"><i class="devicon-bash-plain colored text-4xl"></i><h3 class="font-display font-bold text-white mt-2">Bash</h3><span class="inline-block mt-2 px-2.5 py-1 rounded-md bg-skyTech/15 border border-skyTech/40 text-skyTech badge-pill">Scripting</span></div></article>
+        <article class="build-block lang-card rounded-2xl p-4 text-center" data-build-tag="LANG // MATLAB"><div class="wire-overlay"><span class="wire-tag">MATLAB</span></div><div class="block-content"><i class="devicon-matlab-plain colored text-4xl"></i><h3 class="font-display font-bold text-white mt-2">MATLAB</h3><span class="inline-block mt-2 px-2.5 py-1 rounded-md bg-slate-500/20 border border-slate-400/40 text-slate-200 badge-pill">Explorando</span></div></article>
+
+        <article class="build-block lang-card rounded-2xl p-4 text-center" data-build-tag="LANG // JULIA"><div class="wire-overlay"><span class="wire-tag">JULIA</span></div><div class="block-content"><i class="devicon-julia-plain colored text-4xl"></i><h3 class="font-display font-bold text-white mt-2">Julia</h3><span class="inline-block mt-2 px-2.5 py-1 rounded-md bg-slate-500/20 border border-slate-400/40 text-slate-200 badge-pill">Explorando</span></div></article>
+        <article class="build-block lang-card rounded-2xl p-4 text-center" data-build-tag="LANG // ELIXIR"><div class="wire-overlay"><span class="wire-tag">EX</span></div><div class="block-content"><i class="devicon-elixir-plain colored text-4xl"></i><h3 class="font-display font-bold text-white mt-2">Elixir</h3><span class="inline-block mt-2 px-2.5 py-1 rounded-md bg-slate-500/20 border border-slate-400/40 text-slate-200 badge-pill">Explorando</span></div></article>
+        <article class="build-block lang-card rounded-2xl p-4 text-center" data-build-tag="LANG // OBJC"><div class="wire-overlay"><span class="wire-tag">OBJC</span></div><div class="block-content"><i class="devicon-objectivec-plain colored text-4xl"></i><h3 class="font-display font-bold text-white mt-2">Objective-C</h3><span class="inline-block mt-2 px-2.5 py-1 rounded-md bg-slate-500/20 border border-slate-400/40 text-slate-200 badge-pill">Explorando</span></div></article>
+        <article class="build-block lang-card rounded-2xl p-4 text-center" data-build-tag="LANG // APPS_SCRIPT"><div class="wire-overlay"><span class="wire-tag">GAS</span></div><div class="block-content"><i class="devicon-google-plain colored text-4xl"></i><h3 class="font-display font-bold text-white mt-2">Apps Script</h3><span class="inline-block mt-2 px-2.5 py-1 rounded-md bg-emerald-500/15 border border-emerald-400/40 text-emerald-300 badge-pill">Proyectos reales</span></div></article>
+        <article class="build-block lang-card rounded-2xl p-4 text-center" data-build-tag="LANG // POSTGRESQL"><div class="wire-overlay"><span class="wire-tag">PG</span></div><div class="block-content"><i class="devicon-postgresql-plain colored text-4xl"></i><h3 class="font-display font-bold text-white mt-2">PostgreSQL</h3><span class="inline-block mt-2 px-2.5 py-1 rounded-md bg-cyanElectric/15 border border-cyanElectric/40 text-cyanElectric badge-pill">BD en uso</span></div></article>
+        <article class="build-block lang-card rounded-2xl p-4 text-center" data-build-tag="LANG // MARIADB"><div class="wire-overlay"><span class="wire-tag">MDB</span></div><div class="block-content"><i class="devicon-mariadb-original colored text-4xl"></i><h3 class="font-display font-bold text-white mt-2">MariaDB</h3><span class="inline-block mt-2 px-2.5 py-1 rounded-md bg-cyanElectric/15 border border-cyanElectric/40 text-cyanElectric badge-pill">BD en uso</span></div></article>
+      </div>
+
+      <div class="build-block tech-panel mt-8 p-5 sm:p-6 rounded-2xl" data-build-tag="LANG_NOTE // INSIGNIAS">
+        <div class="wire-overlay"><span class="wire-tag">LANG_NOTE // INSIGNIAS</span><div class="wire-handle tl"></div><div class="wire-handle tr"></div><div class="wire-handle bl"></div><div class="wire-handle br"></div></div>
+        <div class="block-content flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <p class="text-sm sm:text-base text-slate-200 leading-relaxed">
+            <span class="text-cyanElectric font-mono font-bold">// Insignias:</span> indican el nivel de relación con cada lenguaje — <span class="text-white font-semibold">Uso activo / Proyectos reales</span>, <span class="text-skyTech font-semibold">Familiarizado / Base</span> y <span class="text-slate-300 font-semibold">Explorando</span> — como parte de un aprendizaje continuo en ingeniería informática.
+          </p>
+          <div class="flex flex-wrap gap-2 shrink-0">
+            <span class="badge-pill px-3 py-1.5 rounded-lg bg-cyanElectric/15 border border-cyanElectric/40 text-cyanElectric">Uso activo</span>
+            <span class="badge-pill px-3 py-1.5 rounded-lg bg-skyTech/15 border border-skyTech/40 text-skyTech">Familiarizado</span>
+            <span class="badge-pill px-3 py-1.5 rounded-lg bg-slate-500/20 border border-slate-400/40 text-slate-200">Explorando</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         NIVEL 05: FORMACIÓN ACADÉMICA, CURSOS Y HOJA DE RUTA
+         ========================================================= -->
+    <section id="formacion" data-depth-section="formacion" class="page-section w-full px-4 sm:px-6 lg:px-8 pt-24 pb-16 border-t border-borderTech/70 justify-start">
+      
+      <div class="build-block mb-12" data-build-tag="SECTION_05 // FORMACION_Y_ROADMAP">
+        <div class="wire-overlay"><span class="wire-tag">SECTION_05 // FORMACION_Y_ROADMAP</span><div class="wire-handle tl"></div><div class="wire-handle tr"></div><div class="wire-handle bl"></div><div class="wire-handle br"></div></div>
+        <div class="block-content flex flex-col lg:flex-row lg:items-end justify-between gap-5">
+          <div>
+            <span class="font-mono text-xs sm:text-sm uppercase tracking-widest text-cyanElectric font-semibold block mb-2">
+              // 05_BASE_ACADÉMICA_Y_VISIÓN
+            </span>
+            <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-white leading-[1.03]">
+              MÁS QUE CÓDIGO.<br/><span class="text-gradient-tech">INGENIERÍA APLICADA.</span>
+            </h2>
+          </div>
+          <p class="text-sm sm:text-base text-slate-300 max-w-md leading-relaxed">
+            Formación universitaria en Ingeniería Informática combinada con conocimientos administrativos y nuevos sistemas en etapa de diseño.
+          </p>
+        </div>
+      </div>
+
+      <!-- 3 Columnas de Alto Contraste -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-7">
+        
+        <!-- Columna 1: Formación & Cursos (4 cols) -->
+        <div class="lg:col-span-4 build-block tech-panel rounded-3xl p-6 sm:p-7" data-build-tag="ACADEMIC_NODE // UPTEC_MS">
+          <div class="wire-overlay"><span class="wire-tag">ACADEMIC_NODE // UPTEC_MS</span><div class="wire-handle tl"></div><div class="wire-handle tr"></div><div class="wire-handle bl"></div><div class="wire-handle br"></div></div>
+          <div class="block-content">
+            <h3 class="font-mono text-xs sm:text-sm uppercase tracking-widest text-cyanElectric font-bold mb-5 pb-3 border-b border-borderTech">
+              Formación Académica
+            </h3>
+
+            <div class="space-y-6 mb-8">
+              <div class="relative pl-4 border-l-2 border-cyanElectric">
+                <span class="font-mono text-xs text-cyanElectric font-bold">EN CURSO • 4TO TRAYECTO / 8VO TRIMESTRE</span>
+                <h4 class="font-display text-xl font-bold uppercase text-white mt-1">Ingeniería en Informática</h4>
+                <p class="text-sm text-slate-300 mt-1">Universidad Politécnica Territorial de Caracas "Mariscal Sucre"</p>
+              </div>
+
+              <div class="relative pl-4 border-l-2 border-skyTech">
+                <span class="font-mono text-xs text-emerald-400 font-bold">CULMINADO • EN ESPERA DE TÍTULO</span>
+                <h4 class="font-display text-xl font-bold uppercase text-white mt-1">TSU en Informática</h4>
+                <p class="text-sm text-slate-300 mt-1">Universidad Politécnica Territorial de Caracas "Mariscal Sucre"</p>
+              </div>
+            </div>
+
+            <h3 class="font-mono text-xs sm:text-sm uppercase tracking-widest text-cyanElectric font-bold mb-4 pb-3 border-b border-borderTech">
+              Cursos y Capacitación
+            </h3>
+            <ul class="space-y-3 text-sm sm:text-base">
+              <li class="flex items-center justify-between p-3 rounded-xl bg-bgAbyss/90 border border-borderTech">
+                <span class="text-white font-medium"><i class="fa-solid fa-award text-cyanElectric mr-2.5"></i>Analista Administrativo</span>
+                <span class="font-mono text-xs font-bold text-skyTech">2017</span>
+              </li>
+              <li class="flex items-center justify-between p-3 rounded-xl bg-bgAbyss/90 border border-borderTech">
+                <span class="text-white font-medium"><i class="fa-solid fa-scale-balanced text-cyanElectric mr-2.5"></i>Legislación Laboral</span>
+                <span class="font-mono text-xs font-bold text-skyTech">2016</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Columna 2: Próximos Proyectos / Hoja de Ruta (5 cols) -->
+        <div class="lg:col-span-5 build-block tech-panel rounded-3xl p-6 sm:p-7" data-build-tag="ROADMAP_QUEUE // NEXT_SYSTEMS">
+          <div class="wire-overlay"><span class="wire-tag">ROADMAP_QUEUE // NEXT_SYSTEMS</span><div class="wire-handle tl"></div><div class="wire-handle tr"></div><div class="wire-handle bl"></div><div class="wire-handle br"></div></div>
+          <div class="block-content">
+            <h3 class="font-mono text-xs sm:text-sm uppercase tracking-widest text-cyanElectric font-bold mb-5 pb-3 border-b border-borderTech">
+              Próximos Proyectos (Hoja de Ruta)
+            </h3>
+
+            <div class="space-y-6">
+              <!-- 01 -->
+              <div class="flex gap-4 items-start">
+                <span class="font-display font-bold text-3xl text-cyanElectric leading-none pt-0.5">01</span>
+                <div>
+                  <h4 class="font-display text-lg sm:text-xl font-bold uppercase text-white leading-snug">
+                    Brújula Tours Vzla — Control de Viajes y Turismo
+                  </h4>
+                  <p class="text-sm text-slate-300 leading-relaxed mt-1.5">
+                    Plataforma integral de reservas, itinerarios turísticos, control de pasajeros y administración financiera para mi agencia de viajes <strong class="text-cyanElectric">Brújula Tours Vzla</strong>.
+                  </p>
+                </div>
+              </div>
+
+              <!-- 02 -->
+              <div class="flex gap-4 items-start pt-5 border-t border-borderTech/80">
+                <span class="font-display font-bold text-3xl text-skyTech leading-none pt-0.5">02</span>
+                <div>
+                  <h4 class="font-display text-lg sm:text-xl font-bold uppercase text-white leading-snug">
+                    Sistema de Viajes para Transporte Escolar Privado
+                  </h4>
+                  <p class="text-sm text-slate-300 leading-relaxed mt-1.5">
+                    Gestión de rutas diarias, registro de abordaje estudiantil, control de pagos de representantes y seguimiento operativo de unidades escolares.
+                  </p>
+                </div>
+              </div>
+
+              <!-- 03 -->
+              <div class="flex gap-4 items-start pt-5 border-t border-borderTech/80">
+                <span class="font-display font-bold text-3xl text-fuchsia-400 leading-none pt-0.5">03</span>
+                <div>
+                  <h4 class="font-display text-lg sm:text-xl font-bold uppercase text-white leading-snug">
+                    Control de Sala de Emergencias (Hospitales y Clínicas)
+                  </h4>
+                  <p class="text-sm text-slate-300 leading-relaxed mt-1.5">
+                    Sistema médico para admisión rápida, clasificación de triaje, disponibilidad de camas/cubículos y trazabilidad de insumos clínicos en emergencia.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Columna 3: Tarjeta Destacada Azul Eléctrico / Cian (3 cols) -->
+        <div class="lg:col-span-3 build-block rounded-3xl bg-gradient-to-br from-cobaltGlow via-[#1d4ed8] to-[#0f172a] border border-cyanElectric/50 p-7 flex flex-col justify-between text-white shadow-[0_20px_50px_rgba(37,99,235,0.35)]" data-build-tag="CORE_MANIFESTO // VISION">
+          <div class="wire-overlay"><span class="wire-tag">CORE_MANIFESTO // VISION</span><div class="wire-handle tl"></div><div class="wire-handle tr"></div><div class="wire-handle bl"></div><div class="wire-handle br"></div></div>
+          <div class="block-content flex flex-col justify-between h-full">
+            <div>
+              <div class="font-display font-bold text-6xl text-cyanElectric leading-none mb-4">“</div>
+              <p class="font-display text-2xl sm:text-[26px] font-bold uppercase leading-snug tracking-tight text-white">
+                Dominar la lógica operativa del almacén me permite diseñar algoritmos y sistemas que eliminan errores humanos.
+              </p>
+            </div>
+
+            <div class="mt-8 pt-5 border-t border-cyanElectric/30">
+              <div class="font-display text-xl font-bold uppercase tracking-wider text-cyanElectric">Deimer Martínez</div>
+              <div class="font-mono text-xs uppercase tracking-widest text-slate-200 mt-1">
+                Ing. Informática • Logística • Datos
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         NIVEL 06: TRAYECTORIA LABORAL (+6 AÑOS)
+         ========================================================= -->
+    <section id="trayectoria" data-depth-section="trayectoria" class="page-section w-full px-4 sm:px-6 lg:px-8 pt-24 pb-16 border-t border-borderTech/70 justify-start">
+      
+      <div class="build-block mb-12" data-build-tag="SECTION_06 // LOG_EXPERIENCIA">
+        <div class="wire-overlay"><span class="wire-tag">SECTION_06 // LOG_EXPERIENCIA</span><div class="wire-handle tl"></div><div class="wire-handle tr"></div><div class="wire-handle bl"></div><div class="wire-handle br"></div></div>
+        <div class="block-content">
+          <span class="font-mono text-xs sm:text-sm uppercase tracking-widest text-cyanElectric font-semibold block mb-2">
+            // 06_HISTORIAL_OPERATIVO_Y_TECNOLÓGICO
+          </span>
+          <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-white leading-none">
+            TRAYECTORIA <span class="text-gradient-tech">PROGRESIVA.</span>
+          </h2>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- Línea de Tiempo Izquierda (8 cols) -->
+        <div class="lg:col-span-8 space-y-5">
+          
+          <!-- Cargo 1 -->
+          <div class="build-block tech-panel rounded-3xl p-6 border-cyanElectric/45" data-build-tag="EXP_01 // SUPERVISOR_IVOO">
+            <div class="wire-overlay"><span class="wire-tag">EXP_01 // SUPERVISOR_IVOO</span><div class="wire-handle tl"></div><div class="wire-handle tr"></div><div class="wire-handle bl"></div><div class="wire-handle br"></div></div>
+            <div class="block-content flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+              <div class="sm:w-48 shrink-0">
+                <span class="inline-block px-3 py-1 rounded-lg bg-cyanElectric/20 border border-cyanElectric/40 text-cyanElectric font-mono text-xs font-bold">
+                  05/2025 – ACTUALIDAD
+                </span>
+                <div class="font-mono text-xs text-slate-400 mt-2">Caracas, Venezuela</div>
+              </div>
+              <div class="flex-1">
+                <h3 class="font-display text-2xl font-bold uppercase text-white">Supervisor de Almacén y Logística</h3>
+                <div class="font-mono text-xs sm:text-sm text-skyTech font-bold mb-3">Simax, C.A. (IVOO)</div>
+                <ul class="text-sm sm:text-[15px] text-slate-200 space-y-2 list-disc list-inside leading-relaxed">
+                  <li>Liderazgo directo sobre el personal operativo en recepción, ubicación, picking, packing y despacho retail.</li>
+                  <li>Planificación de inventarios cíclicos y generales asegurando coincidencia teórica-física superior al <strong class="text-cyanElectric">98%</strong>.</li>
+                  <li>Supervisión del flujo de datos en <strong class="text-white">SAP</strong>, sistemas ERP y aplicaciones internas para mercancía tecnológica de alto valor, garantizando control y trazabilidad.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cargo 2 -->
+          <div class="build-block tech-panel rounded-3xl p-6" data-build-tag="EXP_02 // ANALISTA_INVENTARIOS">
+            <div class="wire-overlay"><span class="wire-tag">EXP_02 // ANALISTA_INVENTARIOS</span><div class="wire-handle tl"></div><div class="wire-handle tr"></div><div class="wire-handle bl"></div><div class="wire-handle br"></div></div>
+            <div class="block-content flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+              <div class="sm:w-48 shrink-0">
+                <span class="font-mono text-xs sm:text-sm text-skyTech font-bold">05/2024 – 05/2025</span>
+                <div class="font-mono text-xs text-slate-400 mt-1">Caracas, Venezuela</div>
+              </div>
+              <div class="flex-1">
+                <h3 class="font-display text-2xl font-bold uppercase text-white">Analista de Inventarios</h3>
+                <div class="font-mono text-xs sm:text-sm text-slate-300 font-semibold mb-2">Simax, C.A. (IVOO)</div>
+                <p class="text-sm sm:text-[15px] text-slate-200 leading-relaxed">
+                  Auditoría continua de entradas, salidas y transferencias inter-sucursales; conciliación de discrepancias en ERP y elaboración de reportes analíticos de KPIs de rotación de inventario.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cargo 3 -->
+          <div class="build-block tech-panel rounded-3xl p-6" data-build-tag="EXP_03 // JEFE_ALMACEN">
+            <div class="wire-overlay"><span class="wire-tag">EXP_03 // JEFE_ALMACEN</span><div class="wire-handle tl"></div><div class="wire-handle tr"></div><div class="wire-handle bl"></div><div class="wire-handle br"></div></div>
+            <div class="block-content flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+              <div class="sm:w-48 shrink-0">
+                <span class="font-mono text-xs sm:text-sm text-skyTech font-bold">04/2023 – 04/2024</span>
+                <div class="font-mono text-xs text-slate-400 mt-1">Caracas, Venezuela</div>
+              </div>
+              <div class="flex-1">
+                <h3 class="font-display text-2xl font-bold uppercase text-white">Jefe de Almacén</h3>
+                <div class="font-mono text-xs sm:text-sm text-slate-300 font-semibold mb-2">Inversiones Tecnológicas 2025, C.A.</div>
+                <p class="text-sm sm:text-[15px] text-slate-200 leading-relaxed">
+                  Coordinación general de recepción, custodia y distribución de equipos tecnológicos; rediseño del layout físico del almacén optimizando tiempos de despacho e identificación de productos.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cargos Anteriores en Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="build-block tech-panel rounded-2xl p-5" data-build-tag="EXP_04 // SOPORTE_LOG">
+              <div class="wire-overlay"><span class="wire-tag">EXP_04</span></div>
+              <div class="block-content">
+                <span class="font-mono text-xs text-cyanElectric font-bold">11/2022 – 04/2023</span>
+                <h4 class="font-display text-lg font-bold uppercase text-white mt-1.5 leading-snug">Asesor de Ventas &amp; Soporte Logístico</h4>
+                <p class="text-xs sm:text-sm text-slate-300 mt-1.5">Inversiones Tecnológicas 2025, C.A.</p>
+              </div>
+            </div>
+
+            <div class="build-block tech-panel rounded-2xl p-5" data-build-tag="EXP_05 // AUDITORIA">
+              <div class="wire-overlay"><span class="wire-tag">EXP_05</span></div>
+              <div class="block-content">
+                <span class="font-mono text-xs text-cyanElectric font-bold">11/2021 – 08/2022</span>
+                <h4 class="font-display text-lg font-bold uppercase text-white mt-1.5 leading-snug">Analista de Auditoría e Inventarios</h4>
+                <p class="text-xs sm:text-sm text-slate-300 mt-1.5">Techno Empire Group</p>
+              </div>
+            </div>
+
+            <div class="build-block tech-panel rounded-2xl p-5" data-build-tag="EXP_06 // COVEPLAST">
+              <div class="wire-overlay"><span class="wire-tag">EXP_06</span></div>
+              <div class="block-content">
+                <span class="font-mono text-xs text-cyanElectric font-bold">05/2018 – 11/2021</span>
+                <h4 class="font-display text-lg font-bold uppercase text-white mt-1.5 leading-snug">Analista Inventarios / Talento Humano</h4>
+                <p class="text-xs sm:text-sm text-slate-300 mt-1.5">COVEPLAST, S.A. (Miranda)</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Panel Derecho "SISTEMAS ACTIVOS" (4 cols) -->
+        <div class="lg:col-span-4 build-block tech-panel rounded-3xl p-6 sm:p-7 flex flex-col justify-between" data-build-tag="RUNTIME_STATUS // SISTEMAS_ACTIVOS">
+          <div class="wire-overlay"><span class="wire-tag">RUNTIME_STATUS // SISTEMAS_ACTIVOS</span><div class="wire-handle tl"></div><div class="wire-handle tr"></div><div class="wire-handle bl"></div><div class="wire-handle br"></div></div>
+          <div class="block-content">
+            <span class="font-mono text-xs uppercase tracking-widest text-cyanElectric font-bold block mb-2">// Despliegue Real</span>
+            <h3 class="font-display text-3xl sm:text-4xl font-bold uppercase text-white leading-none mb-6">
+              EN OPERACIÓN.<br/><span class="text-cyanElectric">EN PRODUCCIÓN.</span>
+            </h3>
+
+            <div class="space-y-4">
+              <div class="p-4 rounded-2xl bg-bgAbyss/90 border border-borderTech">
+                <div class="flex items-center justify-between">
+                  <span class="font-display font-bold text-base uppercase text-white">SISTEMA_CONTROL_IVOO</span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-cyanElectric shadow-[0_0_8px_#00e5ff]"></span>
+                </div>
+                <p class="text-xs font-mono text-slate-300 mt-1">Control Interno Almacén • Apps Script</p>
+              </div>
+
+              <div class="p-4 rounded-2xl bg-bgAbyss/90 border border-borderTech">
+                <div class="flex items-center justify-between">
+                  <span class="font-display font-bold text-base uppercase text-white">GTH — IVOO</span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-cyanElectric shadow-[0_0_8px_#00e5ff]"></span>
+                </div>
+                <p class="text-xs font-mono text-slate-300 mt-1">Gestión Humana Interna • Apps Script</p>
+              </div>
+
+              <div class="p-4 rounded-2xl bg-bgAbyss/90 border border-borderTech">
+                <div class="flex items-center justify-between">
+                  <span class="font-display font-bold text-base uppercase text-white">SICFI &amp; SIGEFICON</span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-skyTech shadow-[0_0_8px_#38bdf8]"></span>
+                </div>
+                <p class="text-xs font-mono text-slate-300 mt-1">Facturación PyMEs &amp; Condominios • PHP/SQL</p>
+              </div>
+
+              <div class="p-4 rounded-2xl bg-bgAbyss/90 border border-borderTech">
+                <div class="flex items-center justify-between">
+                  <span class="font-display font-bold text-base uppercase text-white">Galletas Oso</span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-fuchsia-400 shadow-[0_0_8px_#d946ef]"></span>
+                </div>
+                <p class="text-xs font-mono text-slate-300 mt-1">Catálogo de Ventas y Pedidos • Apps Script</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-5 border-t border-borderTech">
+            <div class="text-xs font-mono text-cyanElectric font-bold uppercase">Competencias Clave:</div>
+            <p class="text-xs sm:text-sm text-slate-300 mt-1.5 leading-relaxed">
+              Auditoría de stock, trazabilidad de mercancía, optimización de layout, ERP Valery/Stellar, liderazgo de equipos y automatización de procesos.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         NIVEL 07: CONEXIÓN & CONTACTO DIRECTO
+         ========================================================= -->
+    <section id="contacto" data-depth-section="contacto" class="page-section w-full px-4 sm:px-6 lg:px-8 pt-24 pb-16 border-t border-borderTech/70 justify-start">
+      <div class="build-block tech-panel rounded-3xl p-7 sm:p-10 lg:p-12" data-build-tag="SECTION_07 // HANDSHAKE_CONTACTO">
+        <div class="wire-overlay"><span class="wire-tag">SECTION_07 // HANDSHAKE_CONTACTO</span><div class="wire-handle tl"></div><div class="wire-handle tr"></div><div class="wire-handle bl"></div><div class="wire-handle br"></div></div>
+        <div class="block-content grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          
+          <!-- Izquierda: Datos Directos -->
+          <div class="lg:col-span-6">
+            <span class="font-mono text-xs sm:text-sm uppercase tracking-widest text-cyanElectric font-bold block mb-2">
+              // 07_CONEXIÓN_DIRECTA • DISPONIBILIDAD INMEDIATA
+            </span>
+            <h2 class="font-display text-4xl sm:text-5xl font-bold uppercase tracking-tight text-white leading-[1.03] mb-4">
+              CONSTRUYAMOS TU <span class="text-gradient-tech">PRÓXIMO SISTEMA.</span>
+            </h2>
+            <p class="text-base text-slate-200 leading-relaxed mb-7">
+              ¿Necesitas sistematizar tu inventario, automatizar flujos administrativos o incorporar un perfil híbrido de Ingeniería Informática y Supervisión Logística? Escríbeme directamente.
+            </p>
+
+            <div class="space-y-3.5">
+              <a href="https://wa.me/584129603589" target="_blank" rel="noopener noreferrer"
+                class="flex items-center gap-4 p-4 rounded-2xl bg-bgAbyss/90 hover:bg-bgCardHover border border-borderTech hover:border-cyanElectric/60 transition-all">
+                <div class="w-12 h-12 rounded-xl bg-emerald-500/15 border border-emerald-400/40 text-emerald-400 flex items-center justify-center text-xl">
+                  <i class="fa-brands fa-whatsapp"></i>
+                </div>
+                <div>
+                  <div class="text-xs font-mono text-slate-400">Teléfonos / WhatsApp Directo</div>
+                  <div class="text-base font-bold text-white">0412-9603589 / 0424-2390530</div>
+                </div>
+              </a>
+
+              <a href="mailto:deimerm089@gmail.com"
+                class="flex items-center gap-4 p-4 rounded-2xl bg-bgAbyss/90 hover:bg-bgCardHover border border-borderTech hover:border-cyanElectric/60 transition-all">
+                <div class="w-12 h-12 rounded-xl bg-cyanElectric/15 border border-cyanElectric/40 text-cyanElectric flex items-center justify-center text-xl">
+                  <i class="fa-solid fa-envelope"></i>
+                </div>
+                <div>
+                  <div class="text-xs font-mono text-slate-400">Correo Electrónico</div>
+                  <div class="text-base font-bold text-white">deimerm089@gmail.com</div>
+                </div>
+              </a>
+
+              <div class="flex items-center gap-4 p-4 rounded-2xl bg-bgAbyss/90 border border-borderTech">
+                <div class="w-12 h-12 rounded-xl bg-cobaltGlow/20 border border-skyTech/40 text-skyTech flex items-center justify-center text-xl">
+                  <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <div>
+                  <div class="text-xs font-mono text-slate-400">Ubicación</div>
+                  <div class="text-base font-bold text-white">Caracas, Distrito Capital, Venezuela</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Derecha: Formulario Interactivo -->
+          <div class="lg:col-span-6">
+            <form id="contact-form" class="p-6 sm:p-7 rounded-2xl bg-bgAbyss/95 border border-borderTech space-y-4 shadow-2xl">
+              <div class="flex items-center justify-between pb-3 border-b border-borderTech">
+                <span class="font-mono text-xs text-cyanElectric font-bold uppercase">// Terminal de Mensaje Rápido</span>
+                <span class="font-mono text-xs text-emerald-400 font-semibold">● READY</span>
+              </div>
+
+              <div>
+                <label class="block font-mono text-xs text-slate-300 mb-1.5">Tu Nombre o Empresa</label>
+                <input type="text" id="sender-name" required placeholder="Ej. Carlos Pérez / Empresa C.A."
+                  class="w-full px-4 py-3 rounded-xl bg-bgCard border border-borderTech focus:border-cyanElectric focus:outline-none text-sm sm:text-base text-white" />
+              </div>
+
+              <div>
+                <label class="block font-mono text-xs text-slate-300 mb-1.5">Área de Interés</label>
+                <select id="project-type"
+                  class="w-full px-4 py-3 rounded-xl bg-bgCard border border-borderTech focus:border-cyanElectric focus:outline-none text-sm sm:text-base text-white">
+                  <option value="Sistema de Inventario / Control de Almacén">Sistema de Inventario / Control de Almacén</option>
+                  <option value="Desarrollo Web a Medida (PHP + PostgreSQL/MariaDB)">Desarrollo Web a Medida (PHP + SQL)</option>
+                  <option value="Automatización con Google Apps Script">Automatización con Google Apps Script</option>
+                  <option value="Agentes IA / Automatización Inteligente">Agentes IA / Automatización Inteligente</option>
+                  <option value="Oportunidad Laboral / Supervisión Logística">Oportunidad Laboral / Supervisión Logística</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block font-mono text-xs text-slate-300 mb-1.5">Detalles de tu solicitud</label>
+                <textarea id="sender-message" rows="3" required placeholder="Cuéntame brevemente qué sistema o proceso deseas optimizar..."
+                  class="w-full px-4 py-3 rounded-xl bg-bgCard border border-borderTech focus:border-cyanElectric focus:outline-none text-sm sm:text-base text-white"></textarea>
+              </div>
+
+              <button type="submit"
+                class="w-full py-3.5 rounded-xl bg-gradient-to-r from-cyanElectric to-cobaltGlow hover:brightness-110 text-bgAbyss font-display font-bold text-base flex items-center justify-center gap-2.5 shadow-lg shadow-cyanElectric/25 transition-all cursor-pointer">
+                <i class="fa-brands fa-whatsapp text-lg"></i>
+                <span>Enviar solicitud por WhatsApp</span>
+              </button>
+
+              <!-- Mensaje de confirmación visual -->
+              <div id="form-feedback" class="hidden p-3.5 rounded-xl bg-cyanElectric/15 border border-cyanElectric/40 text-cyanElectric text-xs font-mono text-center">
+                ¡Mensaje preparado! Abriendo WhatsApp con tu solicitud...
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="content-layer border-t border-borderTech/80 bg-bgAbyss/90 py-8 pb-24">
+    <div class="w-full px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm font-mono text-slate-400">
+      <div class="flex items-center gap-2.5">
+        <span class="font-display font-bold text-base text-cyanElectric tracking-wider">DM</span>
+        <span>© 2026 Deimer M. Martínez Villaparedes — Caracas, Venezuela.</span>
+      </div>
+      <div class="text-skyTech">
+        Ingeniería en Informática • Arquitectura &amp; Operaciones
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================
+       BARRA FLOTANTE INFERIOR ESTILO CANVAS INTERACTIVO
+       ========================================================= -->
+  <div class="fixed bottom-4 left-1/2 -translate-x-1/2 z-40 w-[94%] max-w-2xl">
+    <div class="px-4 py-3 rounded-2xl bg-bgCard/95 border border-cyanElectric/35 backdrop-blur-xl shadow-[0_10px_40px_rgba(0,0,0,0.85)] flex items-center justify-between gap-3">
+      
+      <div class="flex items-center gap-2.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-cyanElectric animate-pulse"></span>
+        <span id="agent-status-text" class="font-mono text-xs text-slate-200">
+          Modo Inmersión Activo • Baja para ensamblar módulos
+        </span>
+      </div>
+
+      <button onclick="resetAndRebuildAll()"
+        class="px-3.5 py-1.5 rounded-xl bg-cyanElectric hover:bg-skyTech text-bgAbyss font-mono text-xs font-extrabold flex items-center gap-1.5 transition-colors cursor-pointer shrink-0">
+        <i class="fa-solid fa-wand-magic-sparkles text-[11px]"></i>
+        <span>Reconstruir</span>
+      </button>
+
+    </div>
+  </div>
+
+  <!-- =========================================================
+       SCRIPTS: 1) FONDO ANIMADO DE CÓDIGO Y DIAGRAMAS DE FLUJO
+                2) MOTOR DE CONSTRUCCIÓN PROGRESIVA AL HACER SCROLL
+                3) HUD DE PROFUNDIDAD SUMERGIBLE
+       ========================================================= -->
+  <script>
+    /* =========================================================================
+       1. CANVAS INMERSIVO DE INGENIERÍA INFORMÁTICA (CÓDIGO + DIAGRAMAS DE FLUJO)
+       ========================================================================= */
+    const canvas = document.getElementById('dev-canvas');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+    let scrollOffset = 0;
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      initCodeColumns();
+      initFlowNodes();
+    });
+
+    // Fragmentos reales de código y flujos con IA/agentes (PHP, SQL, JS, Apps Script, Python)
+    const CODE_SNIPPETS = [
+      'SELECT stock_fisico, stock_teorico FROM inventario_ivoo WHERE exactitud >= 0.98;',
+      'function auditarCiclico(almacenId) { return SpreadsheetApp.openById(almacenId); }',
+      '<?php $stmt = $pdo->prepare("INSERT INTO facturas_sicfi (cliente, total) VALUES (?, ?)"); ?>',
+      'const sigeficon = new CondominioFinance({ residencia: "Villaflores", db: "MariaDB" });',
+      'const agent = copilot.task({ goal: "refactor módulo de inventario", tools: ["edit","test"] });',
+      'if (discrepancia === 0) { status = "CONCILIADO_OK"; } else { triggerAudit(); }',
+      'prompt = "Analiza este flujo y sugiere optimizaciones con agentes IA";',
+      'CREATE INDEX idx_trazabilidad ON movimientos_almacen (fecha_despacho, sku);',
+      'class BrujulaToursEngine { async reservarPaquete(destino, pasajeros) { ... } }',
+      'python -c "print(\'automatización asistida por IA\')"',
+      'export const triageEmergencia = (nivel) => priorityQueue.enqueue(nivel);'
+    ];
+
+    let codeLines = [];
+    function initCodeColumns() {
+      codeLines = [];
+      const count = Math.min(14, Math.max(6, Math.floor(width / 170)));
+      for (let i = 0; i < count; i++) {
+        codeLines.push({
+          x: Math.random() * Math.max(100, width - 220),
+          y: Math.random() * height,
+          speed: 0.30 + Math.random() * 0.50,
+          text: CODE_SNIPPETS[i % CODE_SNIPPETS.length],
+          alpha: 0.10 + Math.random() * 0.20,
+          color: i % 4 === 0 ? '#d946ef' : (i % 2 === 0 ? '#00e5ff' : '#38bdf8')
+        });
+      }
+    }
+
+    // Nodos de diagramas de flujo (optimizado para fluidez)
+    let flowNodes = [];
+    function initFlowNodes() {
+      flowNodes = [];
+      const nodeCount = Math.min(8, Math.max(4, Math.floor(width / 240)));
+      const shapes = ['rect', 'diamond', 'pill'];
+      for (let i = 0; i < nodeCount; i++) {
+        flowNodes.push({
+          x: (width / (nodeCount + 1)) * (i + 1),
+          baseY: 120 + (i % 4) * 190,
+          w: 74,
+          h: 34,
+          shape: shapes[i % shapes.length],
+          depthFactor: 0.12 + (i % 3) * 0.08,
+          color: i % 3 === 0 ? 'rgba(217, 70, 239, 0.18)' : 'rgba(0, 229, 255, 0.18)'
+        });
+      }
+    }
+
+    let lastBgFrame = 0;
+    function renderEngineeringBackground(ts = 0) {
+      requestAnimationFrame(renderEngineeringBackground);
+      if (ts - lastBgFrame < 33) return; // ~30fps para fluidez
+      lastBgFrame = ts;
+      ctx.clearRect(0, 0, width, height);
+
+      // Dibujar líneas de código flotando con parallax
+      ctx.font = '12px "JetBrains Mono", monospace';
+      for (let i = 0; i < codeLines.length; i++) {
+        const line = codeLines[i];
+        line.y -= line.speed;
+        if (line.y < -30) {
+          line.y = height + 30;
+          line.x = Math.random() * Math.max(100, width - 220);
+        }
+        const parallaxY = (line.y - scrollOffset * 0.14) % (height + 60);
+        const drawY = parallaxY < -30 ? parallaxY + height + 60 : parallaxY;
+        ctx.globalAlpha = line.alpha;
+        ctx.fillStyle = line.color;
+        ctx.fillText(line.text, line.x, drawY);
+      }
+      ctx.globalAlpha = 1;
+
+      // Dibujar nodos de diagrama de flujo conectados
+      for (let idx = 0; idx < flowNodes.length; idx++) {
+        const node = flowNodes[idx];
+        const y = ((node.baseY - scrollOffset * node.depthFactor) % (height + 160) + (height + 160)) % (height + 160) - 80;
+        ctx.strokeStyle = node.color;
+        ctx.lineWidth = 1.1;
+
+        if (node.shape === 'rect') {
+          ctx.strokeRect(node.x - node.w / 2, y - node.h / 2, node.w, node.h);
+        } else if (node.shape === 'diamond') {
+          ctx.beginPath();
+          ctx.moveTo(node.x, y - 24);
+          ctx.lineTo(node.x + 38, y);
+          ctx.lineTo(node.x, y + 24);
+          ctx.lineTo(node.x - 38, y);
+          ctx.closePath();
+          ctx.stroke();
+        } else {
+          ctx.beginPath();
+          ctx.roundRect(node.x - node.w / 2, y - 15, node.w, 30, 15);
+          ctx.stroke();
+        }
+
+        if (idx < flowNodes.length - 1) {
+          const next = flowNodes[idx + 1];
+          const nextY = ((next.baseY - scrollOffset * next.depthFactor) % (height + 160) + (height + 160)) % (height + 160) - 80;
+          if (Math.abs(nextY - y) < 300) {
+            ctx.beginPath();
+            ctx.moveTo(node.x, y + 20);
+            ctx.lineTo(node.x, (y + nextY) / 2);
+            ctx.lineTo(next.x, (y + nextY) / 2);
+            ctx.lineTo(next.x, nextY - 20);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    initCodeColumns();
+    initFlowNodes();
+    renderEngineeringBackground();
+
+
+    /* =========================================================================
+       2. MOTOR DE AGENTES MULTIPLAYER QUE CONSTRUYEN CADA ESPACIO AL BAJAR
+       ========================================================================= */
+    const AGENTS_POOL = [
+      { name: 'Ing_Core', color: '#00e5ff', text: '#040812' },
+      { name: 'AI_Agent', color: '#d946ef', text: '#ffffff' },
+      { name: 'PHP_Arch', color: '#3b82f6', text: '#ffffff' },
+      { name: 'SQL_Node', color: '#38bdf8', text: '#040812' },
+      { name: 'Copilot', color: '#7c3aed', text: '#ffffff' },
+      { name: 'Script_GS', color: '#22d3ee', text: '#040812' },
+      { name: 'VS_Code', color: '#38bdf8', text: '#040812' },
+      { name: 'SAP_Flow', color: '#f59e0b', text: '#040812' },
+      { name: 'Android', color: '#34d399', text: '#040812' },
+      { name: 'Net_Ops', color: '#a78bfa', text: '#ffffff' }
+    ];
+
+    const agentsLayer = document.getElementById('agents-layer');
+    const originCore = document.getElementById('origin-core');
+    const statusText = document.getElementById('agent-status-text');
+    let cursors = [];
+    let agentIdleTimer = null;
+
+    function startAgentIdleMotion() {
+      if (agentIdleTimer) clearInterval(agentIdleTimer);
+      const animate = () => {
+        if (!cursors || cursors.length === 0) return;
+        const vw = window.innerWidth || 1280;
+        const vh = window.innerHeight || 720;
+        const t = Date.now() / 1000;
+        cursors.forEach((cursor, i) => {
+          if (cursor.busy) return;
+          const mode = i % 4;
+          let x, y;
+          if (mode === 0) {
+            // barrido horizontal amplio
+            x = ((t * (70 + i * 9) + i * 140) % (vw + 200)) - 100;
+            y = vh * (0.18 + (i % 5) * 0.14) + Math.sin(t * 0.9 + i) * 50;
+          } else if (mode === 1) {
+            // órbita/curva
+            x = vw * (0.2 + (i % 3) * 0.28) + Math.cos(t * (0.7 + i * 0.06) + i * 0.8) * (vw * 0.16);
+            y = vh * (0.22 + ((i + 2) % 3) * 0.22) + Math.sin(t * (0.85 + i * 0.05) + i * 1.1) * (vh * 0.14);
+          } else if (mode === 2) {
+            // diagonal flotante
+            x = ((t * (55 + i * 7) + i * 110) % (vw + 160)) - 80;
+            y = ((t * (35 + i * 5) + i * 90) % (vh + 120)) - 40;
+          } else {
+            // presencia lateral y enfoque
+            x = vw * (0.08 + (i % 2) * 0.72) + Math.cos(t * (0.55 + i * 0.07) + i) * 80;
+            y = vh * (0.15 + (i % 4) * 0.18) + Math.sin(t * (0.65 + i * 0.06) + i * 0.7) * 90;
+          }
+          const cx = Math.max(12, Math.min(vw - 110, x));
+          const cy = Math.max(80, Math.min(vh - 40, y));
+          cursor.el.style.transition = 'transform 0.06s linear, opacity 0.08s ease';
+          cursor.el.style.opacity = '0.92';
+          cursor.el.style.transform = `translate3d(${cx}px, ${cy}px, 0)`;
+        });
+      };
+      animate();
+      agentIdleTimer = setInterval(animate, 100);
+    }
+
+    function initAgents() {
+      agentsLayer.innerHTML = '';
+      cursors = [];
+      const cx = window.innerWidth / 2;
+      const cy = window.innerHeight / 2;
+
+      AGENTS_POOL.forEach((ag, i) => {
+        const el = document.createElement('div');
+        el.className = 'agent-cursor';
+        el.innerHTML = `
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M5.5 3.21V20.8c0 .45.54.67.85.35l4.86-4.86a.5.5 0 0 1 .35-.15h6.87c.45 0 .67-.53.35-.85L6.35 2.86a.5.5 0 0 0-.85.35Z"
+              fill="${ag.color}" stroke="#040812" stroke-width="1.5"/>
+          </svg>
+          <div class="agent-badge" style="background:${ag.color}; color:${ag.text};">
+            ${ag.name}
+          </div>
+        `;
+        const angle = (i / AGENTS_POOL.length) * Math.PI * 2;
+        const sx = cx + Math.cos(angle) * 60;
+        const sy = cy + Math.sin(angle) * 60;
+        el.style.transform = `translate3d(${sx}px, ${sy}px, 0)`;
+        el.style.opacity = '0.9';
+        agentsLayer.appendChild(el);
+        cursors.push({ el, busy: false, color: ag.color, name: ag.name });
+      });
+
+      startAgentIdleMotion();
+    }
+
+    // Despacha agentes hacia un bloque específico cuando entra en pantalla al hacer scroll
+    function dispatchAgentsToBlock(block) {
+      if (block.dataset.built === 'true') return;
+      block.dataset.built = 'true';
+
+      const rect = block.getBoundingClientRect();
+      const tag = block.dataset.buildTag || 'COMPILING_MODULE';
+      if (statusText) statusText.textContent = `Ensamblando: ${tag}`;
+
+      // Activar wireframe cian
+      block.classList.remove('state-hidden');
+      block.classList.add('state-wireframe');
+
+      // Enviar 2-4 agentes disponibles a puntos del bloque
+      const available = cursors.filter(c => !c.busy);
+      const pool = available.length >= 3 ? available : cursors;
+      const count = Math.min(4, Math.max(2, Math.min(pool.length, 2 + Math.floor(Math.random() * 3))));
+      const selectedCursors = [...pool].sort(() => Math.random() - 0.5).slice(0, count);
+
+      selectedCursors.forEach((cursor, idx) => {
+        if (!cursor) return;
+        cursor.busy = true;
+        const targetX = Math.max(20, Math.min(window.innerWidth - 120, rect.left + rect.width * (0.12 + idx * 0.22)));
+        const targetY = Math.max(85, Math.min(window.innerHeight - 50, rect.top + 18 + (idx % 3) * Math.min(90, Math.max(20, rect.height * 0.28))));
+
+        cursor.el.style.transition = 'transform 0.04s ease-out, opacity 0.06s ease';
+        cursor.el.style.opacity = '1';
+        cursor.el.style.transform = `translate3d(${targetX}px, ${targetY}px, 0)`;
+
+        setTimeout(() => {
+          cursor.busy = false;
+          cursor.el.style.transition = 'transform 0.04s ease-out, opacity 0.08s ease';
+          cursor.el.style.opacity = '0.92';
+        }, 60);
+      });
+
+      // Revelar el bloque nítido tras completar la fase wireframe
+      setTimeout(() => {
+        block.classList.remove('state-wireframe');
+        block.classList.add('state-built');
+      }, 100);
+    }
+
+    // IntersectionObserver: Construye cada sección y tarjeta progresivamente a medida que bajas
+    let buildObserver = null;
+    function setupScrollBuilder() {
+      if (buildObserver) buildObserver.disconnect();
+
+      const blocks = Array.from(document.querySelectorAll('.build-block'));
+      buildObserver = new IntersectionObserver((entries) => {
+        let stagger = 0;
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.target.dataset.built !== 'true') {
+            const target = entry.target;
+            setTimeout(() => {
+              dispatchAgentsToBlock(target);
+            }, stagger * 90);
+            stagger++;
+          }
+        });
+      }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      blocks.forEach((block) => {
+        block.dataset.built = 'false';
+        block.classList.remove('state-built', 'state-wireframe');
+        block.classList.add('state-hidden');
+        buildObserver.observe(block);
+      });
+
+      // Inicio suave: mostrar el hero casi de inmediato para no saturar ni dejar vacío al cargar
+      const heroBlocks = blocks.filter(b => b.closest('#inicio'));
+      heroBlocks.forEach((block, i) => {
+        block.dataset.built = 'true';
+        block.classList.remove('state-hidden', 'state-wireframe');
+        block.classList.add('state-built');
+        block.style.transitionDelay = `${i * 60}ms`;
+        setTimeout(() => { block.style.transitionDelay = ''; }, 700);
+      });
+    }
+
+    // Botón de recompilación total
+    function resetAndRebuildAll() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (originCore) originCore.style.opacity = '1';
+      initAgents();
+      setupScrollBuilder();
+      setTimeout(() => {
+        if (originCore) originCore.style.opacity = '0';
+      }, 500);
+    }
+
+
+    /* =========================================================================
+       3. EXPLORACIÓN SUMERGIBLE: BARRA DE PROGRESO, HUD DE PROFUNDIDAD Y PARALLAX
+       ========================================================================= */
+    const topScrollBar = document.getElementById('top-scroll-bar');
+    const depthPercent = document.getElementById('depth-percent');
+    const parallaxHeroWord = document.getElementById('parallax-hero-word');
+    const depthSections = document.querySelectorAll('[data-depth-section]');
+    const depthLinks = document.querySelectorAll('[data-depth-link]');
+
+    let lastDepthSection = '';
+    let lastDepthProgress = -1;
+    let scrollTicking = false;
+
+    function onScrollFrame() {
+      scrollTicking = false;
+      scrollOffset = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? Math.min(100, Math.max(0, Math.round((scrollOffset / docHeight) * 100))) : 0;
+
+      if (progress !== lastDepthProgress) {
+        topScrollBar.style.width = `${progress}%`;
+        depthPercent.textContent = `${progress}%`;
+        lastDepthProgress = progress;
+      }
+
+      // Parallax sutil en el título monumental PORTAFOLIO
+      if (parallaxHeroWord) {
+        if (scrollOffset < 700) {
+          parallaxHeroWord.style.transform = `translate3d(0, ${scrollOffset * 0.18}px, 0)`;
+        } else if (parallaxHeroWord.style.transform) {
+          parallaxHeroWord.style.transform = '';
+        }
+      }
+
+      // Resaltar nivel actual en el HUD lateral (solo si cambia)
+      let currentSectionId = lastDepthSection || 'inicio';
+      const threshold = scrollOffset + 240;
+      for (let i = 0; i < depthSections.length; i++) {
+        if (depthSections[i].offsetTop <= threshold) {
+          currentSectionId = depthSections[i].getAttribute('data-depth-section');
+        }
+      }
+
+      if (currentSectionId !== lastDepthSection) {
+        lastDepthSection = currentSectionId;
+        depthLinks.forEach((link) => {
+          const targetId = link.getAttribute('data-depth-link');
+          const label = link.querySelector('span:first-child');
+          const dot = link.querySelector('.depth-dot');
+          const active = targetId === currentSectionId;
+          if (label) {
+            label.classList.toggle('text-cyanElectric', active);
+            label.classList.toggle('font-bold', active);
+            label.classList.toggle('text-slate-400', !active);
+            label.classList.toggle('font-medium', !active);
+          }
+          if (dot) {
+            dot.classList.toggle('bg-cyanElectric', active);
+            dot.classList.toggle('scale-125', active);
+            dot.classList.toggle('shadow-[0_0_10px_#00e5ff]', active);
+            dot.classList.toggle('bg-slate-600', !active);
+          }
+        });
+      }
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!scrollTicking) {
+        scrollTicking = true;
+        requestAnimationFrame(onScrollFrame);
+      }
+    }, { passive: true });
+
+
+    /* =========================================================================
+       4. FILTROS DE PROYECTOS & FORMULARIO WHATSAPP
+       ========================================================================= */
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach((b) => {
+          b.classList.remove('bg-cyanElectric', 'text-bgAbyss', 'font-bold', 'shadow-lg', 'shadow-cyanElectric/25');
+          b.classList.add('bg-bgCard', 'border', 'border-borderTech', 'text-slate-300', 'font-semibold');
+        });
+        btn.classList.remove('bg-bgCard', 'border', 'border-borderTech', 'text-slate-300', 'font-semibold');
+        btn.classList.add('bg-cyanElectric', 'text-bgAbyss', 'font-bold', 'shadow-lg', 'shadow-cyanElectric/25');
+
+        const filter = btn.dataset.filter;
+        projectCards.forEach((card) => {
+          const matches = filter === 'all' || card.dataset.category === filter;
+          if (matches) {
+            card.style.display = 'flex';
+            card.dataset.built = 'false';
+            dispatchAgentsToBlock(card);
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Formulario de contacto
+    const contactForm = document.getElementById('contact-form');
+    const formFeedback = document.getElementById('form-feedback');
+
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('sender-name').value.trim();
+      const type = document.getElementById('project-type').value;
+      const msg = document.getElementById('sender-message').value.trim();
+
+      const whatsappText = encodeURIComponent(
+        `Hola Deimer, te contacto desde tu Portafolio Web.\n\n` +
+        `*Nombre / Empresa:* ${name}\n` +
+        `*Área:* ${type}\n` +
+        `*Mensaje:* ${msg}`
+      );
+
+      formFeedback.classList.remove('hidden');
+      setTimeout(() => {
+        window.open(`https://wa.me/584129603589?text=${whatsappText}`, '_blank');
+      }, 550);
+    });
+
+    /* =========================================================================
+       5. NAVEGACIÓN TIPO PAGINACIÓN (TECLADO Y SCROLL POR SECCIONES)
+       ========================================================================= */
+    const pageSections = Array.from(document.querySelectorAll('[data-depth-section]'));
+    let isPaging = false;
+
+    function currentPageIndex() {
+      const probe = window.scrollY + window.innerHeight * 0.35;
+      let idx = 0;
+      pageSections.forEach((sec, i) => {
+        if (sec.offsetTop <= probe) idx = i;
+      });
+      return idx;
+    }
+
+    function goToPage(index) {
+      if (index < 0 || index >= pageSections.length) return;
+      isPaging = true;
+      const target = pageSections[index];
+      const top = target.getBoundingClientRect().top + window.scrollY - 72;
+      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+      setTimeout(() => { isPaging = false; }, 450);
+    }
+
+    function isInteractiveTarget(el) {
+      if (!el) return false;
+      const tag = (el.tagName || '').toLowerCase();
+      return ['input', 'textarea', 'select', 'button', 'a'].includes(tag) || el.isContentEditable || !!el.closest('input, textarea, select');
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (isInteractiveTarget(document.activeElement) && !['PageDown', 'PageUp', 'Home', 'End'].includes(e.key)) return;
+      const idx = currentPageIndex();
+      if (e.key === 'ArrowDown' || e.key === 'PageDown' || (e.key === ' ' && !e.shiftKey)) {
+        e.preventDefault();
+        goToPage(idx + 1);
+      } else if (e.key === 'ArrowUp' || e.key === 'PageUp' || (e.key === ' ' && e.shiftKey)) {
+        e.preventDefault();
+        goToPage(idx - 1);
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        goToPage(0);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        goToPage(pageSections.length - 1);
+      }
+    }, { passive: false });
+
+    // Navegación por rueda: se deja el scroll nativo + snap para máxima fluidez.
+    // La paginación precisa se mantiene con teclado (flechas, PageUp/Down, Espacio, Home/End).
+
+    // Luz interactiva sobre la foto del hero (sigue el cursor)
+    (function initHeroPhotoLight() {
+      const wrap = document.getElementById('hero-photo-wrap');
+      const light = document.getElementById('hero-photo-light');
+      if (!wrap || !light) return;
+      const setLight = (xPct, yPct) => {
+        light.style.background = `radial-gradient(circle at ${xPct}% ${yPct}%, rgba(0,229,255,0.34), rgba(217,70,239,0.16) 26%, transparent 56%)`;
+      };
+      wrap.addEventListener('mousemove', (e) => {
+        const rect = wrap.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        setLight(x, y);
+      });
+      wrap.addEventListener('mouseenter', () => { light.style.opacity = '1'; });
+      wrap.addEventListener('mouseleave', () => {
+        light.style.opacity = '0.8';
+        setLight(70, 30);
+      });
+      // también reacciona al movimiento en el hero para mayor efecto
+      const hero = document.getElementById('inicio');
+      if (hero) {
+        hero.addEventListener('mousemove', (e) => {
+          const rect = wrap.getBoundingClientRect();
+          const x = ((e.clientX - rect.left) / rect.width) * 100;
+          const y = ((e.clientY - rect.top) / rect.height) * 100;
+          setLight(Math.max(0, Math.min(100, x)), Math.max(0, Math.min(100, y)));
+        });
+      }
+    })();
+
+    // Arranque inicial
+    window.addEventListener('load', () => {
+      initAgents();
+      setupScrollBuilder();
+      if (statusText) statusText.textContent = 'Agentes en movimiento: construyendo interfaz...';
+      // Efecto de inmersión inicial
+      requestAnimationFrame(onScrollFrame);
+      // Actividad inicial visible: mandar agentes a los primeros bloques bajo el hero
+      setTimeout(() => {
+        const blocks = Array.from(document.querySelectorAll('.build-block')).filter(b => !b.closest('#inicio') && b.getBoundingClientRect().top < window.innerHeight * 1.05);
+        blocks.slice(0, 6).forEach((b, i) => setTimeout(() => dispatchAgentsToBlock(b), 120 + i * 90));
+      }, 200);
+      // Pantalla de carga: mostrar brevemente y luego revelar el portafolio
+      setTimeout(() => {
+        if (originCore) {
+          originCore.style.opacity = '0';
+          originCore.style.pointerEvents = 'none';
+          setTimeout(() => { originCore.style.display = 'none'; }, 750);
+        }
+      }, 1400);
+    });
+  </script>
+</body>
+</html>
+
+
